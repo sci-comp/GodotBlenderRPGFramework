@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://4pssytbq3qo1"]
+
+[ext_resource type="Script" path="res://addons/StandardAssets/Script/Critter/RandomWalker.cs" id="1_oxktt"]
+[ext_resource type="Script" path="res://addons/StandardAssets/Script/Utility/NextEventTimer.cs" id="2_7ppe6"]
+[ext_resource type="PackedScene" uid="uid://c8alf2ra2jals" path="res://Demo/Scene/Character/PF_Chicken_Friend.glb" id="3_vl7ar"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_byfd3"]
+height = 1.0
+
+[node name="PF_Chicken_Friend_Random_Walker-n1" type="CharacterBody3D"]
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+safe_margin = 0.01
+script = ExtResource("1_oxktt")
+wanderDistance = 4.0
+
+[node name="EggTimer" type="Node" parent="."]
+script = ExtResource("2_7ppe6")
+loop = true
+t_next_min = 2.0
+t_next_max = 7.0
+t_next_average = 3.0
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+avoidance_enabled = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CapsuleShape3D_byfd3")
+
+[node name="PF_Chicken_Friend" parent="." instance=ExtResource("3_vl7ar")]

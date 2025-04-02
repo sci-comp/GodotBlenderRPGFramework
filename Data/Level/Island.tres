@@ -4,8 +4,9 @@
 
 [resource]
 script = ExtResource("1_rvamm")
-FadeLevelTitleInOut = false
 AllowMenu = true
+EnableSky = true
+FadeLevelTitleInOut = false
 HasEpigraph = false
 PlayerExistsInLevel = true
 Environment = "wind"

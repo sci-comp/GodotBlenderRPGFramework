@@ -72,5 +72,15 @@ public partial class SaveManager : Node
         return false;
     }
 
+    public float GetTime()
+    {
+        // Todo
+        return 0.0f;
+    }
+
+    public void SetTime(float time)
+    {
+        // Todo
+    }
 }
 

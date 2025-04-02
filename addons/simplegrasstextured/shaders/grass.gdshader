@@ -1,13 +1,32 @@
-// MIT
+/* grass.gdshader
+This file is part of: SimpleGrassTextured
+Copyright (c) 2023 IcterusGames
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, cull_disabled, specular_schlick_ggx, world_vertex_coords;
-uniform vec3 light_direction;
-uniform vec3 light_color;
-
+render_mode blend_mix,depth_draw_opaque,cull_disabled,specular_schlick_ggx,world_vertex_coords;
 uniform vec4 albedo : source_color = vec4(1.0);
 uniform sampler2D texture_albedo : source_color,filter_linear_mipmap,repeat_disable;
 uniform vec2 texture_frames = vec2(1.0,1.0);
+uniform int light_mode = 0;
 uniform float alpha_scissor_threshold = 0.5;
 uniform sampler2D texture_normal : hint_roughness_normal,filter_linear_mipmap,repeat_enable;
 uniform float normal_scale : hint_range(-16,16) = 1.0;
@@ -43,16 +62,17 @@ global uniform sampler2D sgt_wind_pattern : source_color, repeat_enable, filter_
 
 varying vec2 uv_align;
 varying vec2 uv_scale;
-varying vec3 normal_world;
-varying mat3 VARYING_ROTATION_MATRIX;
+varying flat vec3 v_normal_grass;
 
 const highp float EPSILON = 0.0001;
+
 
 float get_value(sampler2D tex, vec2 uv) {
 	vec4 color = textureLod(tex, uv, 0);
 	float value = round(color.r * 65280.0) + round(color.g * 255.0);
 	return value;
 }
+
 
 float wrap(float value, float min, float max) {
 	float range = max - min;
@@ -66,28 +86,27 @@ float wrap(float value, float min, float max) {
 	return result;
 }
 
+
 void vertex() {
 	float lev = pow(abs((VERTEX.y - NODE_POSITION_WORLD.y) / grass_size_y), 1.7 + sgt_wind_strength);
 	float rand = wrap(dot(NODE_POSITION_WORLD, NODE_POSITION_WORLD * 10.0), 0.0, 256.0);
 	float randf = fract(rand);
 	int randi = int(randf * 10.0);
-	
+
 	uv_align = vec2(float(randi % int(texture_frames.x)), float(int(randf * 100.0) % int(texture_frames.y)));
 	uv_align /= texture_frames;
 	uv_scale = vec2(1.0 / texture_frames.x, 1.0 / texture_frames.y);
-	
-	if (sgt_wind_strength > 0.0) {
-		float text_wind = texture(sgt_wind_pattern, (vec2(NODE_POSITION_WORLD.x, NODE_POSITION_WORLD.z) * 0.005) - sgt_wind_movement.xz).r;
-		VERTEX.x += text_wind * lev * sgt_wind_strength * sgt_wind_direction.x * (1.0 - grass_strength);
-		VERTEX.z += text_wind * lev * sgt_wind_strength * sgt_wind_direction.z * (1.0 - grass_strength);
-		VERTEX.x += sin(rand + sgt_wind_movement.y) * lev * ((1.0 - grass_strength) / 10.0);
-		VERTEX.x += sgt_wind_direction.x * lev * (sgt_wind_strength + (sin(TIME + rand) * 0.2 * (1.0 - grass_strength) * min(1.0, sgt_wind_turbulence))) * (1.0 - grass_strength);
-		VERTEX.y += sin(rand + sgt_wind_movement.y) * lev * ((1.0 - grass_strength) / 10.0) * sgt_wind_direction.y;
-		VERTEX.y += sgt_wind_direction.y * lev * (sgt_wind_strength + (sin(TIME + rand) * 0.2 * (1.0 - grass_strength) * min(1.0, sgt_wind_turbulence))) * (1.0 - grass_strength);
-		VERTEX.z += cos(rand + sgt_wind_movement.y) * lev * ((1.0 - grass_strength) / 10.0);
-		VERTEX.z += sgt_wind_direction.z * lev * (sgt_wind_strength + (sin(TIME + rand) * 0.2 * (1.0 - grass_strength) * min(1.0, sgt_wind_turbulence))) * (1.0 - grass_strength);
-	}
-	
+
+	float text_wind = texture(sgt_wind_pattern, (vec2(NODE_POSITION_WORLD.x, NODE_POSITION_WORLD.z) * 0.005) - sgt_wind_movement.xz).r;
+	VERTEX.x += text_wind * lev * sgt_wind_strength * sgt_wind_direction.x * (1.0 - grass_strength);
+	VERTEX.z += text_wind * lev * sgt_wind_strength * sgt_wind_direction.z * (1.0 - grass_strength);
+	VERTEX.x += sin(rand + sgt_wind_movement.y) * lev * ((1.0 - grass_strength) / 10.0);
+	VERTEX.x += sgt_wind_direction.x * lev * (sgt_wind_strength + (sin(TIME + rand) * 0.2 * (1.0 - grass_strength) * min(1.0, sgt_wind_turbulence))) * (1.0 - grass_strength);
+	VERTEX.y += sin(rand + sgt_wind_movement.y) * lev * ((1.0 - grass_strength) / 10.0) * sgt_wind_direction.y;
+	VERTEX.y += sgt_wind_direction.y * lev * (sgt_wind_strength + (sin(TIME + rand) * 0.2 * (1.0 - grass_strength) * min(1.0, sgt_wind_turbulence))) * (1.0 - grass_strength);
+	VERTEX.z += cos(rand + sgt_wind_movement.y) * lev * ((1.0 - grass_strength) / 10.0);
+	VERTEX.z += sgt_wind_direction.z * lev * (sgt_wind_strength + (sin(TIME + rand) * 0.2 * (1.0 - grass_strength) * min(1.0, sgt_wind_turbulence))) * (1.0 - grass_strength);
+
 	vec3 align = VERTEX - NODE_POSITION_WORLD;
 	float scale_rand = ((float(randi % 5) / 5.0) * scale_var);
 	float dist = 1.0;
@@ -96,11 +115,11 @@ void vertex() {
 		dist = 1.0 - clamp(0.0, 1.0, float(randi % int(max(1.0, node_dist / optimization_level))));
 		dist *= smoothstep(optimization_dist_max, optimization_dist_min, node_dist);
 	}
-	
+
 	vec3 scale = vec3(scale_w, scale_h, scale_w) * (1.0 + scale_rand);
 	VERTEX = NODE_POSITION_WORLD + (align * dist * scale);
-	
-	if (dist > 0.0 && interactive_mode) {
+
+	if(dist > 0.0 && interactive_mode) {
 		float node_x = NODE_POSITION_WORLD.x / 50.0;
 		float node_z = NODE_POSITION_WORLD.z / 50.0;
 		vec2 uv_disp = vec2(clamp(0.0, 1.0, (node_x - (sgt_player_position.x - 0.5))), clamp(0.0, 1.0, (node_z - (sgt_player_position.z - 0.5))));
@@ -111,37 +130,24 @@ void vertex() {
 		VERTEX.xz += norm_mov.xy * 0.5;
 		VERTEX.y -= (VERTEX.y - NODE_POSITION_WORLD.y) * norm_mov.b * interactive_level_y;
 	}
-	
-	mat3 rotation_matrix = transpose(mat3(MODEL_MATRIX));
-	normal_world = normalize(rotation_matrix * vec3(0.0, 0.0, 1.0));
-	VARYING_ROTATION_MATRIX = rotation_matrix;
-	
-	//mat3 rotation_matrix = mat3(MODEL_MATRIX);
-	//normal_world = normalize(rotation_matrix * vec3(0.0, 0.0, 1.0));
-	//VARYING_ROTATION_MATRIX = inverse(transpose(rotation_matrix));
-	
-	/*const vec3 vertex1 = vec3(-0.5, 0.0, 0.0); // Bottom-left
-	const vec3 vertex2 = vec3(0.5, 0.0, 0.0);  // Bottom-right
-	const vec3 vertex3 = vec3(0.5, 1.0, 0.0);  // Top-right
-	const vec3 vertex4 = vec3(-0.5, 1.0, 0.0); // Top-left
-	vec3 face_normal1 = normalize(cross(vertex3 - vertex2, vertex4 - vertex3));
-	const vec3 vertex5 = vec3(0.0, 0.0, -0.5); // Bottom-back
-	const vec3 vertex6 = vec3(0.0, 0.0, 0.5);  // Bottom-front
-	const vec3 vertex7 = vec3(0.0, 1.0, 0.5);  // Top-front
-	const vec3 vertex8 = vec3(0.0, 1.0, -0.5); // Top-back
-	vec3 face_normal2 = normalize(cross(vertex7 - vertex6, vertex8 - vertex7));
-	vec3 average_normal = normalize(face_normal1 + face_normal2);
-	vec3 world_position = (MODEL_MATRIX * vec4(0.0, 0.0, 0.0, 1.0)).xyz + align * dist * scale;
-	mat3 rotation_matrix = mat3(MODEL_MATRIX);
-	normal_world = normalize(rotation_matrix * average_normal);
-	VARYING_ROTATION_MATRIX = inverse(transpose(rotation_matrix));*/
+	v_normal_grass = (MODELVIEW_MATRIX * vec4(0.0, 1.0, 0.0, 1.0)).xyz - NODE_POSITION_VIEW;
 }
 
+
 void light() {
-	vec3 object_space_light_direction = normalize(VARYING_ROTATION_MATRIX * light_direction);
-	float NdotL = max(0.0, dot(normal_world, object_space_light_direction));
-	DIFFUSE_LIGHT = light_color * NdotL * ATTENUATION;
+	switch(light_mode) {
+	case 0: // Lambert
+		DIFFUSE_LIGHT += clamp(dot(NORMAL, LIGHT), 0.0, 1.0) * ATTENUATION * 0.3 * LIGHT_COLOR;
+		break;
+	case 1: // Normal grass
+		DIFFUSE_LIGHT += clamp(dot(v_normal_grass, LIGHT), 0.0, 1.0) * ATTENUATION * 0.3 * LIGHT_COLOR;
+		break;
+	case 2: // Unshaded
+		DIFFUSE_LIGHT = vec3(1.0);
+		break;
+	}
 }
+
 
 void fragment() {
 	vec2 uv = (UV * uv_scale) + uv_align;

@@ -12,7 +12,7 @@ config_version=5
 
 config/name="GodotBlenderRPGFramework"
 run/main_scene="res://Level/Island.tscn"
-config/features=PackedStringArray("4.3", "C#", "Forward Plus")
+config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 config/windows_native_icon="res://godot_icon.ico"
 
@@ -29,13 +29,17 @@ SaveManager="*res://Demo/Script/SaveManager.cs"
 CameraBridge="*res://Demo/Script/CameraBridge.cs"
 PlayerSpawner="*res://Demo/Scene/Autoload/PlayerSpawner.tscn"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [dotnet]
 
 project/assembly_name="GodotBlenderRPGFramework"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/simplegrasstextured/plugin.cfg", "res://addons/sky_3d/plugin.cfg")
+enabled=PackedStringArray("res://addons/simplegrasstextured/plugin.cfg")
 
 [file_customization]
 
