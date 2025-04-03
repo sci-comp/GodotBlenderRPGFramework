@@ -7,6 +7,9 @@ namespace Game
     {
         private LevelManager levelManager;
 
+        // Todo
+        public Vector3 CameraPosition = Vector3.Zero;
+
         public override void _Ready()
         {
             levelManager = GetNode<LevelManager>("/root/LevelManager");

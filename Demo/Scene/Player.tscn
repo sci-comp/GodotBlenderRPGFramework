@@ -1,9 +1,9 @@
 [gd_scene load_steps=22 format=3 uid="uid://cc1m2a1obsyn4"]
 
-[ext_resource type="Script" path="res://addons/fpc/character.gd" id="1_0t4e8"]
-[ext_resource type="Script" path="res://Demo/Script/CharacterHub.cs" id="1_p8ic4"]
-[ext_resource type="Script" path="res://addons/fpc/EditorModule.gd" id="3_v3ckk"]
-[ext_resource type="Script" path="res://addons/StandardAssets/Script/Interact/ProximityDetector.cs" id="4_5a40d"]
+[ext_resource type="Script" uid="uid://c3cigq1c6nivm" path="res://addons/fpc/character.gd" id="1_0t4e8"]
+[ext_resource type="Script" uid="uid://hdsvtpxi0o2d" path="res://Demo/Script/CharacterHub.cs" id="1_p8ic4"]
+[ext_resource type="Script" uid="uid://bcqufycqmkuut" path="res://addons/fpc/EditorModule.gd" id="3_v3ckk"]
+[ext_resource type="Script" uid="uid://drsrgffrpto72" path="res://addons/StandardAssets/Script/Interact/ProximityDetector.cs" id="4_5a40d"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kp17n"]
 albedo_color = Color(0.909804, 0.596078, 0, 1)
@@ -145,8 +145,8 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5e5t5"]
 _data = {
-"RESET": SubResource("Animation_j8cx7"),
-"crouch": SubResource("Animation_5ec5e")
+&"RESET": SubResource("Animation_j8cx7"),
+&"crouch": SubResource("Animation_5ec5e")
 }
 
 [sub_resource type="Animation" id="Animation_gh776"]
@@ -265,9 +265,9 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o0unb"]
 _data = {
-"RESET": SubResource("Animation_gh776"),
-"sprint": SubResource("Animation_8ku67"),
-"walk": SubResource("Animation_lrqmv")
+&"RESET": SubResource("Animation_gh776"),
+&"sprint": SubResource("Animation_8ku67"),
+&"walk": SubResource("Animation_lrqmv")
 }
 
 [sub_resource type="Animation" id="Animation_fvvjq"]
@@ -371,10 +371,10 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qeg5r"]
 _data = {
-"RESET": SubResource("Animation_fvvjq"),
-"jump": SubResource("Animation_s07ye"),
-"land_left": SubResource("Animation_l1rph"),
-"land_right": SubResource("Animation_vsknp")
+&"RESET": SubResource("Animation_fvvjq"),
+&"jump": SubResource("Animation_s07ye"),
+&"land_left": SubResource("Animation_l1rph"),
+&"land_right": SubResource("Animation_vsknp")
 }
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_k4wwl"]
@@ -404,7 +404,7 @@ shape = SubResource("CapsuleShape3D_uy03j")
 
 [node name="CrouchAnimation" type="AnimationPlayer" parent="Player"]
 libraries = {
-"": SubResource("AnimationLibrary_5e5t5")
+&"": SubResource("AnimationLibrary_5e5t5")
 }
 
 [node name="Head" type="Node3D" parent="Player"]
@@ -416,13 +416,13 @@ cull_mask = 983039
 
 [node name="HeadbobAnimation" type="AnimationPlayer" parent="Player/Head"]
 libraries = {
-"": SubResource("AnimationLibrary_o0unb")
+&"": SubResource("AnimationLibrary_o0unb")
 }
 blend_times = [&"RESET", &"RESET", 0.5, &"RESET", &"walk", 0.5, &"walk", &"RESET", 0.5]
 
 [node name="JumpAnimation" type="AnimationPlayer" parent="Player/Head"]
 libraries = {
-"": SubResource("AnimationLibrary_qeg5r")
+&"": SubResource("AnimationLibrary_qeg5r")
 }
 speed_scale = 4.0
 
@@ -470,3 +470,10 @@ theme_override_font_sizes/font_size = 24
 text = "Example Details"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="Player/Proximity"]
+visible = false
+offset_left = 512.0
+offset_top = 480.0
+offset_right = 640.0
+offset_bottom = 507.0

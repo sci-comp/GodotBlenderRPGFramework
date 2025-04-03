@@ -1,14 +1,12 @@
 using Godot;
+using Godot.Collections;
 
 namespace Game
 {
     public partial class Resources : Node
     {
-        public Texture2D GetEpigraphTexture(string levelID)
-        {
-            // Placeholder
-            return null;
-        }
+        public Dictionary<string, Texture2D> EpigraphTexture = null;
+
 
     }
 

@@ -22,12 +22,13 @@ buses/default_bus_layout="res://addons/StandardAssets/Default/default_bus_layout
 
 [autoload]
 
-SFXPlayer3D="*res://Demo/Scene/Autoload/SFXPlayer3D.tscn"
 SimpleGrass="*res://addons/simplegrasstextured/singleton.tscn"
 LevelManager="*res://Demo/Scene/Autoload/LevelManager.tscn"
 SaveManager="*res://Demo/Script/SaveManager.cs"
 CameraBridge="*res://Demo/Script/CameraBridge.cs"
 PlayerSpawner="*res://Demo/Scene/Autoload/PlayerSpawner.tscn"
+SFX="*res://Demo/Scene/Autoload/SFX.tscn"
+Particles="*res://Demo/Scene/Autoload/Particles.tscn"
 
 [display]
 

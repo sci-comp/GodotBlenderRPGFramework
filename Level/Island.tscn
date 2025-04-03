@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=4 uid="uid://y0wbbfugjd8s"]
+[gd_scene load_steps=49 format=4 uid="uid://y0wbbfugjd8s"]
 
 [ext_resource type="PackedScene" uid="uid://cpbxu2g60vnq" path="res://addons/StandardAssets/Prefab/VFX_Level_Portal.tscn" id="1_8qcsf"]
 [ext_resource type="PackedScene" uid="uid://rva731ydt5wo" path="res://Demo/Scene/Stone/PF_Rock_Plate.glb" id="3_gu3vi"]
@@ -14,19 +14,19 @@
 [ext_resource type="PackedScene" uid="uid://b5dhrk8y5kro2" path="res://Demo/Scene/Stone/PF_Rock_Riser_Tall.glb" id="12_m4dxn"]
 [ext_resource type="PackedScene" uid="uid://clrroqgutxg5x" path="res://Demo/Scene/Stone/PF_Rock_Arch.glb" id="13_36rtp"]
 [ext_resource type="PackedScene" uid="uid://bk4y0yxk5dnf6" path="res://Demo/Scene/Platform/PF_Demo_Periodic_Platform.tscn" id="15_jw1sv"]
-[ext_resource type="Script" uid="uid://b7uyakghkj5rl" path="res://addons/StandardAssets/Script/Platform/Gateway.cs" id="16_7pq6p"]
-[ext_resource type="Script" uid="uid://by2bk3rbymqml" path="res://addons/StandardAssets/Script/Platform/GatewayHub.cs" id="16_va1ck"]
+[ext_resource type="Script" uid="uid://dxxhia11hqrr0" path="res://addons/StandardAssets/Script/Platform/Gateway.cs" id="16_7pq6p"]
+[ext_resource type="Script" uid="uid://dwtiun2ig7hhr" path="res://addons/StandardAssets/Script/Platform/GatewayHub.cs" id="16_va1ck"]
 [ext_resource type="Material" uid="uid://dtadar3khr1iq" path="res://Demo/Material/MI_Demo_Stone.tres" id="17_qircf"]
 [ext_resource type="PackedScene" uid="uid://cmlnek1qdbjmq" path="res://Demo/Scene/Platform/PF_Demo_Gateway_Platform.tscn" id="19_0wj8r"]
-[ext_resource type="Script" uid="uid://c2fdxccr7n8am" path="res://addons/StandardAssets/Script/Platform/ThereAndBack.cs" id="20_saexe"]
+[ext_resource type="Script" uid="uid://drlpg0jnstchw" path="res://addons/StandardAssets/Script/Platform/ThereAndBack.cs" id="20_saexe"]
 [ext_resource type="PackedScene" uid="uid://fbtwdx1e3358" path="res://Demo/VFX/vfx_confetti.tscn" id="20_tggve"]
-[ext_resource type="Script" uid="uid://b4alisvtkm3tj" path="res://addons/StandardAssets/Script/Interact/OutOfBounds.cs" id="21_6dln4"]
+[ext_resource type="Script" uid="uid://don3yk87nq2b8" path="res://addons/StandardAssets/Script/Interact/OutOfBounds.cs" id="21_6dln4"]
 [ext_resource type="PackedScene" uid="uid://cofvl6bgrpwqo" path="res://Demo/Scene/PF_Demo_Lever.tscn" id="21_6go27"]
-[ext_resource type="Script" uid="uid://cf32fhsksvobg" path="res://addons/StandardAssets/Script/Particle/PlayParticlesOnEnter.cs" id="22_agvoy"]
+[ext_resource type="Script" uid="uid://dham5twtjqohm" path="res://addons/StandardAssets/Script/Particle/PlayParticlesOnEntered.cs" id="22_agvoy"]
 [ext_resource type="PackedScene" uid="uid://e54icttacva1" path="res://Demo/Scene/Interactable/PF_Signpost.tscn" id="22_pitnc"]
 [ext_resource type="PhysicsMaterial" uid="uid://d3l23g4fpbanh" path="res://addons/StandardAssets/PhysicsMaterial/phys_stone.tres" id="23_j6ebb"]
 [ext_resource type="PackedScene" uid="uid://h35r37v43e2p" path="res://addons/StandardAssets/Prefab/PF_POI.tscn" id="23_p1cgf"]
-[ext_resource type="Script" uid="uid://bqkouh3qnqijr" path="res://addons/StandardAssets/Script/Platform/PlatformLeverHub.cs" id="27_cprpn"]
+[ext_resource type="Script" uid="uid://d2mpli6pyd285" path="res://addons/StandardAssets/Script/Platform/PlatformLeverHub.cs" id="27_cprpn"]
 [ext_resource type="PackedScene" uid="uid://c8alf2ra2jals" path="res://Demo/Scene/Character/PF_Chicken_Friend.glb" id="28_17scx"]
 [ext_resource type="PackedScene" uid="uid://4pssytbq3qo1" path="res://Demo/Scene/Character/PF_Chicken_Friend_Random_Walker.tscn" id="31_6p50t"]
 
@@ -42,108 +42,6 @@ background_mode = 2
 sky = SubResource("Sky_vl0vs")
 tonemap_mode = 2
 glow_enabled = true
-
-[sub_resource type="CSharpScript" id="CSharpScript_dgjei"]
-script/source = "using Godot;
-using System.Collections.Generic;
-
-namespace Game
-{
-    [Tool]
-    public partial class EnvironmentController : Node
-    {
-        private bool skyIsEnbalbed = false;
-        private LevelManager levelManager;
-        private Node sky3D;
-        private GrassMaterialUpdater grassMaterialUpdater;
-        private SaveManager saveManager;
-
-        public override void _Ready()
-        {
-            grassMaterialUpdater = GetNode<GrassMaterialUpdater>(\"Grass/MaterialUpdater\");
-            sky3D = GetNode<Node>(\"Sky3D\");
-
-            List<MultiMeshInstance3D> grassNodes = new();
-            foreach (Node child in GetChildren())
-            {
-                if (child is MultiMeshInstance3D grassNode)
-                {
-                    grassNodes.Add(grassNode);
-                }
-            }
-
-            if (grassNodes == null || grassNodes.Count == 0)
-            {
-                GD.PrintErr(\"[GrassMaterialUpdater] Grass nodes not found\");
-            }
-            else
-            {
-                grassMaterialUpdater.Initialize(sky3D, grassNodes);
-            }
-
-            if (!Engine.IsEditorHint())
-            {
-                saveManager = GetNode<SaveManager>(\"/root/SaveManager\");
-                levelManager = GetNode<LevelManager>(\"/root/LevelManager\");
-                levelManager.BeginUnloadingLevel += OnBeginUnloadingLevel;
-                bool _skyEnabled = levelManager.CurrentLevelInfo.EnableSky;
-                SetSky(_skyEnabled);
-                if (_skyEnabled)
-                {
-                    SetCurrentTime(saveManager.GetTime());
-                }
-                GD.Print(\"[EnvironmentController] Ready\");
-            }
-        }
-
-        public float GetCurrentTime()
-        {
-            return (float)sky3D.Get(\"current_time\");
-        }
-
-        public void SetCurrentTime(float time)
-        {
-            sky3D.Call(\"set_current_time\", time);
-        }
-
-        public void SetSky3D(bool toggle)
-        {
-            SetSky(toggle);
-            SetLights(toggle);
-            SetFog(toggle);
-            SetClouds(toggle);
-        }
-
-        public void SetSky(bool toggle)
-        {
-            sky3D.Call(\"set_sky_enabled\", toggle);
-        }
-
-        public void SetLights(bool toggle)
-        {
-            sky3D.Call(\"set_lights_enabled\", toggle);
-        }
-
-        public void SetFog(bool toggle)
-        {
-            sky3D.Call(\"set_fog_enabled\", toggle);
-        }
-
-        public void SetClouds(bool toggle)
-        {
-            sky3D.Call(\"set_clouds_enabled\", toggle);
-        }
-
-        private void OnBeginUnloadingLevel(string levelID, string spawnpoint)
-        {
-            // Save time to SaveManager
-        }
-
-    }
-
-}
-
-"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iatyd"]
 resource_local_to_scene = true
@@ -276,7 +174,6 @@ transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -
 shadow_enabled = true
 
 [node name="Environment" type="Node" parent="."]
-script = SubResource("CSharpScript_dgjei")
 
 [node name="Grass" type="MultiMeshInstance3D" parent="Environment"]
 layers = 524289
@@ -603,7 +500,7 @@ RestDuration = 4.0
 remote_path = NodePath("../../../Platform_ThereAndBack")
 
 [node name="Platform_ThereAndBack" type="AnimatableBody3D" parent="Interactable/LeverHub_On_Stone_Arch"]
-transform = Transform3D(-0.262134, -0.087173, -0.961085, 3.72519e-09, 0.995875, -0.0903356, 0.965001, -0.0236798, -0.261071, 126.046, 17.1493, 26.9547)
+transform = Transform3D(-0.262135, -0.087173, -0.961085, 3.72519e-09, 0.995875, -0.0903356, 0.965001, -0.0236798, -0.261071, 126.046, 17.1493, 26.9547)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Interactable/LeverHub_On_Stone_Arch/Platform_ThereAndBack"]
 transform = Transform3D(2, 0, 0, 0, 0.5, 0, 0, 0, 3, 0, 0, 0)

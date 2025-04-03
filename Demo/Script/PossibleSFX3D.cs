@@ -5,7 +5,7 @@ namespace Game
 {
     public partial class PossibleSFX3D : Node
     {
-        public void Initialize(SFXPlayer3D player)
+        public void Initialize(SFX player)
         {
 
         }

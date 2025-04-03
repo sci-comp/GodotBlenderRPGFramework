@@ -4,7 +4,7 @@ namespace Game
 {
     public partial class SFXPlayer3DDisplay : Control
     {
-        public void Initialize(SFXPlayer3D player)
+        public void Initialize(SFX player)
         {
 
         }
