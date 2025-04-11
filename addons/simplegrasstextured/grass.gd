@@ -24,12 +24,25 @@
 @tool
 extends MultiMeshInstance3D
 
+## Define your custom mesh per grass, you can open a .obj, .mesh, etc, or can 
+## copy paste your own mesh from any mesh component. Set as null for default 
+## SimpleGrassTextured mesh.
 @export var mesh : Mesh = null : set = _on_set_mesh
+## Color albedo for mesh material
 @export_color_no_alpha var albedo := Color.WHITE : set = _on_set_albedo
+## Texture albedo for mesh, you can apply normal, metallic and roughness 
+## textures on the "Material parameters" section
 @export var texture_albedo : Texture = load("res://addons/simplegrasstextured/textures/grassbushcc008.png") : set = _on_set_texture_albedo
 @export_group("Material parameters")
+## Lets you setup a multi texture image by frames
 @export var texture_frames : Vector2i = Vector2i(1, 1) : set = _on_set_texture_frames;
+## Defines the texture image alpha threshold
 @export_range(0.0, 1.0) var alpha_scissor_threshold := 0.5 : set = _on_set_alpha_scissor_threshold
+## Ilumination mode[br]
+## [b]Lambert[/b][br]Recomended for complex meshes such as flowers[br][br]
+## [b]Normal grass[/b][br]The lighting will be calculated by the inclination of 
+## the grass, recommended for very simple meshes[br][br]
+## [b]Unshaded[/b][br]No lighting will affect the grass
 @export_enum("Lambert", "Normal grass", "Unshaded") var light_mode := 1 : set = _on_set_light_mode
 @export_subgroup("Normal")
 @export var texture_normal : Texture = null : set = _on_set_texture_normal
@@ -44,20 +57,53 @@ extends MultiMeshInstance3D
 @export_enum("Red","Green","Blue","Alpha","Gray") var roughness_texture_channel : int = 0 : set = _on_set_roughness_texture_channel
 @export_range(0.0, 1.0) var roughness := 1.0 : set = _on_set_roughness
 @export_group("")
+## Scale height factor of all the grass
 @export var scale_h := 1.0 : set = _on_set_scale_h
+## Scale width factor of all the grass
 @export var scale_w := 1.0 : set = _on_set_scale_w
+## Scale variable factor, scale of random grasses will be affected by this 
+## factor
 @export var scale_var := -0.25 : set = _on_set_scale_var
+## Defines the strength of this grass, with large values ​​the grass will not be 
+## moved by the wind, for example a bamboo can be 0.9 (it will almost not be 
+## affected by the wind), and a tall grass can be 0.2 (very affected by the 
+## wind)
 @export_range(0.0, 1.0) var grass_strength := 0.55 : set = _on_set_grass_strength
+## If true, this grass will be in "interactive mode", that means if an object 
+## is near the grass, the grass will react and move.[br][br]
+## [b]To setup the "interactive mode":[/b][br]
+## 1. You must enable by code on the begin of your scene by call 
+## [code]SimpleGrass.set_interactive(true)[/code][br]
+## 2. Setup your objects to be visible on the Visual Layer 17[br]
+## 3. Update the SimpleGrassTexture camera position by calling 
+## [code]SimpleGrass.set_player_position()[/code] regulary (on your _process 
+## function by example)[br][br]
+## [b]You can see how to enable "interactive mode" on:[/b][br]
+## [url]https://github.com/IcterusGames/SimpleGrassTextured?tab=readme-ov-file#how-to-enable-interactive-mode[/url]
 @export var interactive : bool = true : set = _on_set_interactive
-@export var interactive_level_xz : float = 3.0 : set = _on_set_instactive_level_xz
-@export var interactive_level_y : float = 0.3 : set = _on_set_instactive_level_y
+@export_group("Advanced")
+## Allows you to define how much the grass will react to objects on axis X and Z
+@export var interactive_level_xz : float = 3.0 : set = _on_set_interactive_level_xz
+## Allows you to define how much the grass will react to objects on axis Y
+@export var interactive_level_y : float = 0.3 : set = _on_set_interactive_level_y
+## Locks the scale node of SimpleGrassTextured to 1
+@export var disable_node_scale := true : set = _on_set_disable_node_scale
+## Disable the ability to rotate the SimpleGrassTextured node
+@export var disable_node_rotation := true : set = _on_set_disable_node_rotation
 @export_group("Optimization")
 @export var optimization_by_distance := false : set = _on_set_optimization_by_distance
 @export var optimization_level := 7.0 : set = _on_set_optimization_level
 @export var optimization_dist_min := 10.0 : set = _on_set_optimization_dist_min
 @export var optimization_dist_max := 50.0 : set = _on_set_optimization_dist_max
 @export_group("Height Map Data")
+## This is the baked height map of this grass, this will speed up the load of 
+## the scene. To setup this variable use the menu 
+## SimpleGrassTextured->"Bake height map" on the Editor 3D
 @export var baked_height_map : Image = null
+@export_group("Draw Collision Mask")
+## This is the collision mask for drawing, this allows you to define what your 
+## terrain collision mask is, that way it will be easier to draw your grass.
+@export_flags_3d_physics var collision_mask :int = pow(2, 32) - 1
 
 var sgt_radius := 2.0
 var sgt_density := 25
@@ -77,7 +123,7 @@ var wind_strength := 0.15 : set = _on_set_wind_strength
 var wind_turbulence := 1.0 : set = _on_set_wind_turbulence
 var wind_pattern : Texture = null : set = _on_set_wind_pattern
 
-var _default_mesh : Mesh = null
+var _default_mesh : Mesh = load("res://addons/simplegrasstextured/default_mesh.tres").duplicate()
 var _buffer_add : Array[Transform3D] = []
 var _material := load("res://addons/simplegrasstextured/materials/grass.material").duplicate() as ShaderMaterial
 var _force_update_multimesh := false
@@ -94,8 +140,9 @@ var _wrng_deprec_windpatt = true
 
 
 func _init():
-	_default_mesh = _build_default_mesh()
 	if Engine.is_editor_hint():
+		if collision_mask == pow(2, 32) - 1:
+			collision_mask = ProjectSettings.get_setting("SimpleGrassTextured/General/default_terrain_physics_layer", pow(2, 32) -1)
 		for var_i in get_property_list():
 			if not var_i.name.begins_with("sgt_"):
 				continue
@@ -112,25 +159,22 @@ func _ready():
 	else:
 		set_process(false)
 	_singleton = get_node("/root/SimpleGrass")
-	if not has_meta("SimpleGrassTextured"):
-		# Update for previous version, 1.0.2 needs vertex color
-		set_meta("SimpleGrassTextured", "1.0.2")
-		_force_update_multimesh = true
-		if multimesh != null:
-			if mesh != null:
-				multimesh.mesh = mesh
-			else:
-				multimesh.mesh = _default_mesh
+	if not has_meta(&"SimpleGrassTextured"):
+		set_meta(&"SimpleGrassTextured", "2.0.5")
 	else:
-		if get_meta("SimpleGrassTextured") == "1.0.2":
+		if get_meta(&"SimpleGrassTextured") == "1.0.2":
 			# New default mesh update tangents
-			set_meta("SimpleGrassTextured", "2.0.3")
+			set_meta(&"SimpleGrassTextured", "2.0.3")
 			_force_update_multimesh = true
 			if multimesh != null:
 				if mesh != null:
 					multimesh.mesh = mesh
 				else:
 					multimesh.mesh = _default_mesh
+		if get_meta(&"SimpleGrassTextured") == "2.0.3":
+			set_meta(&"SimpleGrassTextured", "2.0.5")
+			disable_node_scale = false
+			disable_node_rotation = false
 	if multimesh == null:
 		multimesh = MultiMesh.new()
 		multimesh.transform_format = MultiMesh.TRANSFORM_3D
@@ -142,8 +186,24 @@ func _ready():
 	if light_mode == 2:
 		_material = load("res://addons/simplegrasstextured/materials/grass_unshaded.material").duplicate() as ShaderMaterial
 	for isur in range(multimesh.mesh.get_surface_count()):
-		multimesh.mesh.surface_set_material(isur, _material)
+		if multimesh.mesh.surface_get_material(isur) != null:
+			_material = multimesh.mesh.surface_get_material(isur)
+			break
+	for isur in range(multimesh.mesh.get_surface_count()):
+		if multimesh.mesh.surface_get_material(isur) == null:
+			multimesh.mesh.surface_set_material(isur, _material)
+	set_disable_scale(disable_node_scale)
+	if disable_node_rotation:
+		set_notify_transform(true)
 	update_all_material()
+
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_TRANSFORM_CHANGED:
+		if disable_node_rotation and global_rotation != Vector3.ZERO:
+			var prev_scale := scale
+			global_rotation = Vector3.ZERO
+			scale = prev_scale
 
 
 func update_all_material():
@@ -165,8 +225,8 @@ func update_all_material():
 	_on_set_scale_var(scale_var)
 	_on_set_grass_strength(grass_strength)
 	_on_set_interactive(interactive)
-	_on_set_instactive_level_xz(interactive_level_xz)
-	_on_set_instactive_level_y(interactive_level_y)
+	_on_set_interactive_level_xz(interactive_level_xz)
+	_on_set_interactive_level_y(interactive_level_y)
 	_on_set_optimization_by_distance(optimization_by_distance)
 	_on_set_optimization_level(optimization_level)
 	_on_set_optimization_dist_min(optimization_dist_min)
@@ -244,6 +304,9 @@ func erase(pos : Vector3, radius : float):
 		multi_new.mesh = mesh
 	else:
 		multi_new.mesh = _default_mesh
+	if multimesh == null:
+		multimesh = MultiMesh.new()
+		multimesh.mesh = mesh if mesh != null else _default_mesh
 	for i in range(multimesh.instance_count):
 		var trans := multimesh.get_instance_transform(i)
 		if trans.origin.distance_to(pos) > radius:
@@ -251,17 +314,26 @@ func erase(pos : Vector3, radius : float):
 	multi_new.instance_count = array.size()
 	for i in range(array.size()):
 		multi_new.set_instance_transform(i, array[i])
-	multimesh = multi_new
+	if Engine.is_editor_hint() and multimesh.resource_path.length():
+		var path := multimesh.resource_path
+		multimesh = multi_new
+		multimesh.take_over_path(path)
+	else:
+		multimesh = multi_new
 	if _material != null:
 		for isur in range(multimesh.mesh.get_surface_count()):
-			multimesh.mesh.surface_set_material(isur, _material)
+			if multimesh.mesh.surface_get_material(isur) == null:
+				multimesh.mesh.surface_set_material(isur, _material)
 	if Engine.is_editor_hint():
 		baked_height_map = null
 		custom_aabb.position = Vector3.ZERO
 		custom_aabb.end = Vector3.ZERO
 
 
-func auto_center_position(editor_interface):
+func auto_center_position():
+	if multimesh == null:
+		multimesh = MultiMesh.new()
+		multimesh.mesh = mesh if mesh != null else _default_mesh
 	var aabb : AABB = multimesh.get_aabb()
 	var center : Vector3 = global_position + aabb.position + (aabb.size / 2)
 	var align : Vector3 = global_position - center
@@ -279,14 +351,20 @@ func auto_center_position(editor_interface):
 		var trans := multimesh.get_instance_transform(i)
 		trans.origin += align
 		multi_new.set_instance_transform(i, trans)
-	multimesh = multi_new
+	if Engine.is_editor_hint() and multimesh.resource_path.length():
+		var path := multimesh.resource_path
+		multimesh = multi_new
+		multimesh.take_over_path(path)
+	else:
+		multimesh = multi_new
 	if _material != null:
 		for isur in range(multimesh.mesh.get_surface_count()):
-			multimesh.mesh.surface_set_material(isur, _material)
+			if multimesh.mesh.surface_get_material(isur) == null:
+				multimesh.mesh.surface_set_material(isur, _material)
 	if Engine.is_editor_hint():
 		if baked_height_map != null:
 			baked_height_map = null
-			bake_height_map(editor_interface)
+			bake_height_map()
 		custom_aabb.position = Vector3.ZERO
 		custom_aabb.end = Vector3.ZERO
 	else:
@@ -294,6 +372,9 @@ func auto_center_position(editor_interface):
 
 
 func recalculate_custom_aabb():
+	if multimesh == null:
+		multimesh = MultiMesh.new()
+		multimesh.mesh = mesh if mesh != null else _default_mesh
 	var start := Vector3.ONE * 0x7FFFFFFF
 	var end := start * -1
 	var mesh_end := multimesh.mesh.get_aabb().end * Vector3(scale_w, scale_h, scale_w)
@@ -313,7 +394,8 @@ func recalculate_custom_aabb():
 
 func _update_multimesh():
 	if multimesh == null:
-		return
+		multimesh = MultiMesh.new()
+		multimesh.mesh = mesh if mesh != null else _default_mesh
 	var multi_new := MultiMesh.new()
 	var count_prev := multimesh.instance_count
 	multi_new.transform_format = MultiMesh.TRANSFORM_3D
@@ -351,10 +433,16 @@ func _update_multimesh():
 		multi_new.set_instance_transform(i, multimesh.get_instance_transform(i))
 	for i in range(_buffer_add.size()):
 		multi_new.set_instance_transform(i + count_prev, _buffer_add[i])
-	multimesh = multi_new
+	if Engine.is_editor_hint() and multimesh.resource_path.length():
+		var path := multimesh.resource_path
+		multimesh = multi_new
+		multimesh.take_over_path(path)
+	else:
+		multimesh = multi_new
 	if _material != null:
 		for isur in range(multimesh.mesh.get_surface_count()):
-			multimesh.mesh.surface_set_material(isur, _material)
+			if multimesh.mesh.surface_get_material(isur) == null:
+				multimesh.mesh.surface_set_material(isur, _material)
 	_buffer_add.clear()
 	temp_dist_min = 0
 	if Engine.is_editor_hint():
@@ -363,84 +451,10 @@ func _update_multimesh():
 		custom_aabb.end = Vector3.ZERO
 
 
-func _build_default_mesh() -> Mesh:
-	var array_mesh := ArrayMesh.new()
-	var vertices := PackedVector3Array()
-	var normals := PackedVector3Array()
-	var tangents := PackedFloat32Array()
-	var colors := PackedColorArray()
-	var uvs := PackedVector2Array()
-	var index := PackedInt32Array()
-	
-	vertices.push_back(Vector3(-0.5, 1, 0))
-	vertices.push_back(Vector3(0.5, 0, 0))
-	vertices.push_back(Vector3(-0.5, 0, 0))
-	vertices.push_back(Vector3(0.5, 1, 0))
-	vertices.push_back(Vector3(0, 1, -0.5))
-	vertices.push_back(Vector3(0, 0, 0.5))
-	vertices.push_back(Vector3(0, 0, -0.5))
-	vertices.push_back(Vector3(0, 1, 0.5))
-	normals.push_back(Vector3(0, 0, 1))
-	normals.push_back(Vector3(0, 0, 1))
-	normals.push_back(Vector3(0, 0, 1))
-	normals.push_back(Vector3(0, 0, 1))
-	normals.push_back(Vector3(-1, 0, 0))
-	normals.push_back(Vector3(-1, 0, 0))
-	normals.push_back(Vector3(-1, 0, 0))
-	normals.push_back(Vector3(-1, 0, 0))
-	for i in range(4):
-		tangents.push_back(1)
-		tangents.push_back(0)
-		tangents.push_back(0)
-		tangents.push_back(1)
-	for i in range(4):
-		tangents.push_back(0)
-		tangents.push_back(0)
-		tangents.push_back(1)
-		tangents.push_back(1)
-	uvs.push_back(Vector2(0, 0))
-	uvs.push_back(Vector2(1, 1))
-	uvs.push_back(Vector2(0, 1))
-	uvs.push_back(Vector2(1, 0))
-	uvs.push_back(Vector2(0, 0))
-	uvs.push_back(Vector2(1, 1))
-	uvs.push_back(Vector2(0, 1))
-	uvs.push_back(Vector2(1, 0))
-	colors.push_back(Color(1, 0, 0))
-	colors.push_back(Color(0, 0, 0))
-	colors.push_back(Color(0, 0, 0))
-	colors.push_back(Color(1, 0, 0))
-	colors.push_back(Color(1, 0, 0))
-	colors.push_back(Color(0, 0, 0))
-	colors.push_back(Color(0, 0, 0))
-	colors.push_back(Color(1, 0, 0))
-	index.push_back(0)
-	index.push_back(1)
-	index.push_back(2)
-	index.push_back(3)
-	index.push_back(1)
-	index.push_back(0)
-	index.push_back(4)
-	index.push_back(5)
-	index.push_back(6)
-	index.push_back(7)
-	index.push_back(5)
-	index.push_back(4)
-	
-	var arrays := []
-	arrays.resize(Mesh.ARRAY_MAX)
-	arrays[Mesh.ARRAY_VERTEX] = vertices
-	arrays[ArrayMesh.ARRAY_NORMAL] = normals
-	arrays[ArrayMesh.ARRAY_TANGENT] = tangents
-	arrays[ArrayMesh.ARRAY_TEX_UV] = uvs
-	arrays[ArrayMesh.ARRAY_COLOR] = colors
-	arrays[ArrayMesh.ARRAY_INDEX] = index
-	
-	array_mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, arrays)
-	return array_mesh
-
-
 func _create_height_map_image(local : bool) -> Image:
+	if multimesh == null:
+		multimesh = MultiMesh.new()
+		multimesh.mesh = mesh if mesh != null else _default_mesh
 	var aabb : AABB = multimesh.get_aabb()
 	var img_size := Vector2i(
 			clamp(snappedi(aabb.size.x * 4, 32), 32, 128),
@@ -501,9 +515,12 @@ func _local_height_map_to_global(img : Image) -> Image:
 	return result
 
 
-func bake_height_map(editor_interface):
+func bake_height_map():
 	if not Engine.is_editor_hint():
 		return null
+	if multimesh == null:
+		multimesh = MultiMesh.new()
+		multimesh.mesh = mesh if mesh != null else _default_mesh
 	await get_tree().process_frame
 	var _dummy = multimesh.buffer.size()
 	await get_tree().process_frame
@@ -511,13 +528,21 @@ func bake_height_map(editor_interface):
 	baked_height_map = img
 
 
-func clear_all(editor_interface = null):
-	multimesh = MultiMesh.new()
+func clear_all():
+	if multimesh == null:
+		multimesh = MultiMesh.new()
+	if Engine.is_editor_hint() and multimesh.resource_path.length():
+		var path := multimesh.resource_path
+		multimesh = MultiMesh.new()
+		multimesh.take_over_path(path)
+	else:
+		multimesh = MultiMesh.new()
+	multimesh.mesh = mesh if mesh != null else _default_mesh
 	multimesh.transform_format = MultiMesh.TRANSFORM_3D
 	if Engine.is_editor_hint():
 		if baked_height_map != null:
 			baked_height_map = null
-			bake_height_map(editor_interface)
+			bake_height_map()
 		custom_aabb.position = Vector3.ZERO
 		custom_aabb.end = Vector3.ZERO
 
@@ -525,6 +550,9 @@ func clear_all(editor_interface = null):
 func _update_height_map():
 	if Engine.is_editor_hint():
 		return
+	if multimesh == null:
+		multimesh = MultiMesh.new()
+		multimesh.mesh = mesh if mesh != null else _default_mesh
 	
 	var img : Image = null
 	
@@ -605,9 +633,13 @@ func _on_set_light_mode(value : int):
 			return
 	if _material != null:
 		_material.set_shader_parameter("light_mode", light_mode)
+		if multimesh == null:
+			multimesh = MultiMesh.new()
+			multimesh.mesh = mesh if mesh != null else _default_mesh
 		if multimesh.mesh != null:
 			for isur in range(multimesh.mesh.get_surface_count()):
-				multimesh.mesh.surface_set_material(isur, _material)
+				if multimesh.mesh.surface_get_material(isur) == null:
+					multimesh.mesh.surface_set_material(isur, _material)
 
 
 func _on_set_texture_normal(value : Texture):
@@ -732,16 +764,32 @@ func _on_set_interactive(value : bool):
 		_material.set_shader_parameter("interactive_mode", interactive)
 
 
-func _on_set_instactive_level_xz(value : float):
+func _on_set_interactive_level_xz(value : float):
 	interactive_level_xz = value
 	if _material != null:
 		_material.set_shader_parameter("interactive_level_xz", interactive_level_xz)
 
 
-func _on_set_instactive_level_y(value : float):
+func _on_set_interactive_level_y(value : float):
 	interactive_level_y = value
 	if _material != null:
 		_material.set_shader_parameter("interactive_level_y", interactive_level_y)
+
+
+func _on_set_disable_node_scale(value : bool) -> void:
+	disable_node_scale = value
+	if disable_node_scale:
+		scale = Vector3.ONE
+	set_disable_scale(disable_node_scale)
+
+
+func _on_set_disable_node_rotation(value : bool) -> void:
+	disable_node_rotation = value
+	if disable_node_rotation:
+		var prev_scale := scale
+		global_rotation = Vector3.ZERO
+		scale = prev_scale
+		set_notify_transform(true)
 
 
 func _on_set_optimization_by_distance(value : bool):

@@ -2,11 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://cpbxu2g60vnq" path="res://addons/StandardAssets/Prefab/VFX_Level_Portal.tscn" id="1_8qcsf"]
 [ext_resource type="PackedScene" uid="uid://rva731ydt5wo" path="res://Demo/Scene/Stone/PF_Rock_Plate.glb" id="3_gu3vi"]
-[ext_resource type="Shader" uid="uid://cicr8i0enjwxf" path="res://addons/simplegrasstextured/shaders/grass.gdshader" id="5_eaerj"]
+[ext_resource type="Shader" uid="uid://bi3o8elbtqoni" path="res://addons/simplegrasstextured/shaders/grass.gdshader" id="5_eaerj"]
 [ext_resource type="PackedScene" uid="uid://blxngopptepmp" path="res://Demo/Scene/Stone/PF_Rock_Cave.glb" id="6_5p8te"]
 [ext_resource type="Texture2D" uid="uid://c4ggdp0kg5wjk" path="res://addons/simplegrasstextured/textures/grassbushcc008.png" id="6_v52cg"]
 [ext_resource type="PackedScene" uid="uid://bcdixo0uw7igd" path="res://Demo/Scene/Stone/PF_Rock_Boulder.glb" id="7_5e8ve"]
-[ext_resource type="Script" uid="uid://crfswx77drbl8" path="res://addons/simplegrasstextured/grass.gd" id="7_10ggt"]
+[ext_resource type="Script" uid="uid://2juaclm8gc1n" path="res://addons/simplegrasstextured/grass.gd" id="7_10ggt"]
 [ext_resource type="PackedScene" uid="uid://dcf27axl81pxk" path="res://Demo/Scene/Stone/PF_Rock_Riser_Henge.glb" id="8_l0s28"]
 [ext_resource type="PackedScene" uid="uid://b8h3n1lu0cty5" path="res://Demo/Scene/Stone/PF_Rock_Riser_Slant.glb" id="9_nqqq2"]
 [ext_resource type="PackedScene" uid="uid://c5gec85a0kuek" path="res://Demo/Scene/Stone/PF_Rock_Overhang.glb" id="10_ooys7"]
@@ -174,6 +174,8 @@ multimesh = SubResource("MultiMesh_n0t0f")
 script = ExtResource("7_10ggt")
 albedo = Color(0.92755, 0.879965, 0.860174, 1)
 texture_albedo = ExtResource("6_v52cg")
+disable_node_scale = false
+disable_node_rotation = false
 sgt_radius = 4.0
 sgt_density = 44
 sgt_scale = 1.0
@@ -181,7 +183,7 @@ sgt_rotation = 360.0
 sgt_rotation_rand = 1.0
 sgt_dist_min = 0.4
 sgt_follow_normal = false
-metadata/SimpleGrassTextured = "2.0.3"
+metadata/SimpleGrassTextured = "2.0.5"
 
 [node name="Setup" type="Node" parent="."]
 

@@ -22,13 +22,13 @@ buses/default_bus_layout="res://addons/StandardAssets/Default/default_bus_layout
 
 [autoload]
 
-SimpleGrass="*res://addons/simplegrasstextured/singleton.tscn"
 LevelManager="*res://Demo/Scene/Autoload/LevelManager.tscn"
 SaveManager="*res://Demo/Script/SaveManager.cs"
 CameraBridge="*res://Demo/Script/CameraBridge.cs"
 PlayerSpawner="*res://Demo/Scene/Autoload/PlayerSpawner.tscn"
 SFX="*res://Demo/Scene/Autoload/SFX.tscn"
 Particles="*res://Demo/Scene/Autoload/Particles.tscn"
+SimpleGrass="*res://addons/simplegrasstextured/singleton.tscn"
 
 [display]
 
@@ -214,6 +214,10 @@ time_scale={
 "type": "float",
 "value": 1.0
 }
+sgt_legacy_renderer={
+"type": "int",
+"value": 0
+}
 sgt_player_position={
 "type": "vec3",
 "value": Vector3(1e+06, 1e+06, 1e+06)
@@ -230,23 +234,23 @@ sgt_motion_texture={
 "type": "sampler2D",
 "value": "res://addons/simplegrasstextured/images/motion.png"
 }
-sgt_wind_pattern={
-"type": "sampler2D",
-"value": "res://addons/simplegrasstextured/images/wind_pattern.png"
-}
-sgt_wind_strength={
-"type": "float",
-"value": 0.0
-}
-sgt_wind_turbulence={
-"type": "float",
-"value": 0.0
+sgt_wind_direction={
+"type": "vec3",
+"value": Vector3(1, 0, 0)
 }
 sgt_wind_movement={
 "type": "vec3",
-"value": Vector3(0, 0, 0)
+"value": Vector2(0, 0)
 }
-sgt_wind_direction={
-"type": "vec3",
-"value": Vector3(0, 0, 0)
+sgt_wind_strength={
+"type": "float",
+"value": 0.15
+}
+sgt_wind_turbulence={
+"type": "float",
+"value": 1.0
+}
+sgt_wind_pattern={
+"type": "sampler2D",
+"value": "res://addons/simplegrasstextured/images/wind_pattern.png"
 }
