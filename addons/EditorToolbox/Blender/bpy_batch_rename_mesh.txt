@@ -1,0 +1,11 @@
+import bpy
+import os
+
+selected_objects = bpy.context.selected_objects
+
+for obj in selected_objects:
+	if "SM_" in obj.name:
+		base_name = obj.name.replace("SM_", "")
+		
+		if obj.type == "MESH":
+			obj.data.name = f"M_{base_name}"

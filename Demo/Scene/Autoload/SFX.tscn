@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5tbjnvppf5lt"]
+
+[ext_resource type="Script" uid="uid://do3obsdo6xjpo" path="res://addons/StandardAssets/Script/Audio/SFX.cs" id="1_nyur7"]
+
+[node name="SFX" type="Node"]
+script = ExtResource("1_nyur7")

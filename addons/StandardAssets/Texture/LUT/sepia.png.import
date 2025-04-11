@@ -1,0 +1,26 @@
+[remap]
+
+importer="3d_texture"
+type="CompressedTexture3D"
+uid="uid://bphjeg657nl4t"
+path="res://.godot/imported/sepia.png-a96488d57e7995a7116554c48e967b74.ctex3d"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://addons/StandardAssets/Texture/LUT/sepia.png"
+dest_files=["res://.godot/imported/sepia.png-a96488d57e7995a7116554c48e967b74.ctex3d"]
+
+[params]
+
+compress/mode=0
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/channel_pack=0
+mipmaps/generate=false
+mipmaps/limit=-1
+slices/horizontal=16
+slices/vertical=1

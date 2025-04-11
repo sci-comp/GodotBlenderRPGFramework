@@ -1,0 +1,7 @@
+This Blender file,
+- is not used by Godot
+- contains original data for the GLB models used in this project
+- is only necessary if the user wishes to modify then re-export/import models
+
+Please see: res://addons/EditorToolbox/Import/glb_post_import.gd for more 
+information on the Blender to Godot export/import process.

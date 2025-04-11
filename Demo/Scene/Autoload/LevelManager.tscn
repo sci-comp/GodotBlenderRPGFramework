@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=3 uid="uid://cc3kgpdoricri"]
+
+[ext_resource type="Script" uid="uid://b54l6k12r37px" path="res://addons/StandardAssets/Script/Level/LevelManager.cs" id="1_1rch1"]
+[ext_resource type="Shader" uid="uid://dkl8fcovrv8tm" path="res://addons/StandardAssets/Shader/dissolve_2d.gdshader" id="3_4lg3s"]
+[ext_resource type="Resource" uid="uid://dmun2byjeapoi" path="res://Data/Level/Cave.tres" id="3_hgu0g"]
+[ext_resource type="Resource" uid="uid://bkg83ic34tg65" path="res://Data/Level/Island.tres" id="4_5b6l1"]
+[ext_resource type="Resource" uid="uid://cw24f8685okx2" path="res://Data/Level/Epigraph.tres" id="4_foolj"]
+[ext_resource type="Animation" uid="uid://dxr1r78uxitcq" path="res://addons/StandardAssets/Shader/dissolve_2d.tres" id="4_hjws5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5mrsu"]
+shader = ExtResource("3_4lg3s")
+shader_parameter/dissolve_amount = 0.0
+shader_parameter/fade_color = Color(0, 0, 0, 1)
+shader_parameter/fade = false
+shader_parameter/inverted = false
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2j4fm"]
+_data = {
+&"FadeToBlack": ExtResource("4_hjws5")
+}
+
+[node name="LevelManager" type="Node2D"]
+script = ExtResource("1_1rch1")
+LevelInfo = {
+&"Cave": ExtResource("3_hgu0g"),
+&"Epigraph": ExtResource("4_foolj"),
+&"Island": ExtResource("4_5b6l1")
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 3
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_5mrsu")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_2j4fm")
+}
+
+[node name="LevelNameLabel" type="Label" parent="."]
+visible = false
+offset_left = 448.0
+offset_top = 128.0
+offset_right = 704.0
+offset_bottom = 192.0

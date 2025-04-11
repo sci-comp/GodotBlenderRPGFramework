@@ -1,0 +1,13 @@
+[gd_resource type="Environment" format=3 uid="uid://dwie2bscwqilh"]
+
+[resource]
+tonemap_mode = 3
+ssao_enabled = true
+sdfgi_enabled = true
+fog_light_color = Color(0.890196, 1, 1, 1)
+fog_light_energy = 0.7
+fog_sun_scatter = 0.05
+fog_density = 0.007
+fog_height = 6.0
+fog_height_density = 0.15
+volumetric_fog_density = 0.02

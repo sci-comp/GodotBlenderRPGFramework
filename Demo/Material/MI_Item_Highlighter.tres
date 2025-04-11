@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c8tluwc4qvph4"]
+
+[ext_resource type="Shader" path="res://addons/StandardAssets/Shader/item_highlighter.gdshader" id="1_o73ty"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_o73ty")
+shader_parameter/shine_color = Color(1, 1, 1, 1)
+shader_parameter/cycle_interval = 1.0
+shader_parameter/shine_speed = 3.0
+shader_parameter/shine_width = 3.0

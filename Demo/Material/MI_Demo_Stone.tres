@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://dtadar3khr1iq"]
+
+[ext_resource type="Texture2D" uid="uid://cv6jkne4sodvu" path="res://Demo/Texture/T_Demo_Stone.png" id="1_ku0y8"]
+[ext_resource type="Texture2D" uid="uid://bjuetweqy3afl" path="res://Demo/Texture/T_Demo_Stone_n.png" id="2_0mou4"]
+
+[resource]
+albedo_texture = ExtResource("1_ku0y8")
+normal_enabled = true
+normal_texture = ExtResource("2_0mou4")
+uv1_scale = Vector3(0.2, 0.2, 0.2)
+uv1_triplanar = true

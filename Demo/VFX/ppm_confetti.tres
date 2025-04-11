@@ -1,0 +1,62 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=13 format=3 uid="uid://c13r8wqpp3xaa"]
+
+[sub_resource type="Curve" id="Curve_wtrjt"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.64723, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_1x7c0"]
+curve = SubResource("Curve_wtrjt")
+
+[sub_resource type="Curve" id="Curve_ksw0r"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, -1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_jrvun"]
+curve = SubResource("Curve_ksw0r")
+
+[sub_resource type="Gradient" id="Gradient_fpcdc"]
+offsets = PackedFloat32Array(0, 0.168254, 0.428571, 0.593651, 0.765079, 0.895238)
+colors = PackedColorArray(1, 0.925562, 0.99242, 1, 1, 0.794692, 0.668689, 1, 0.971852, 0.99961, 0.694566, 1, 0.698614, 0.999824, 0.672617, 1, 0.0313726, 1, 1, 1, 0.413547, 0.516494, 0.99981, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_lndy4"]
+gradient = SubResource("Gradient_fpcdc")
+
+[sub_resource type="Curve" id="Curve_6tu5l"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_j4n7x"]
+curve = SubResource("Curve_6tu5l")
+
+[sub_resource type="Curve" id="Curve_2jptj"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.166181, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_7pvar"]
+curve = SubResource("Curve_2jptj")
+
+[sub_resource type="Curve" id="Curve_43xb3"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_tt7ar"]
+curve = SubResource("Curve_43xb3")
+
+[resource]
+emission_shape = 1
+emission_sphere_radius = 1.0
+angular_velocity_min = -100.0
+angular_velocity_max = 100.0
+angular_velocity_curve = SubResource("CurveTexture_jrvun")
+orbit_velocity_curve = SubResource("CurveTexture_j4n7x")
+gravity = Vector3(0, 0, 0)
+radial_accel_max = 9.0
+radial_accel_curve = SubResource("CurveTexture_7pvar")
+tangential_accel_min = 3.0
+tangential_accel_max = 9.0
+tangential_accel_curve = SubResource("CurveTexture_tt7ar")
+damping_min = 1.0
+damping_max = 4.0
+color_ramp = SubResource("GradientTexture1D_lndy4")
+alpha_curve = SubResource("CurveTexture_1x7c0")

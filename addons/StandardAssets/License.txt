@@ -1,0 +1,10 @@
+Name: Penny Prototype 
+Creator: Paul, made with MakeHuman
+Link: http://www.makehumancommunity.org/
+License: CC0
+
+Name: Default_Cursor
+Creator: itsmars
+Link: https://opengameart.org/content/gauntlet-cursor
+License: CC0
+

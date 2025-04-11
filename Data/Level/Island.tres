@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://bkg83ic34tg65"]
+
+[ext_resource type="PackedScene" uid="uid://y0wbbfugjd8s" path="res://Level/Island.tscn" id="1_884n6"]
+[ext_resource type="Script" uid="uid://c56kgadb3fuil" path="res://addons/StandardAssets/Script/Level/LevelInfo.cs" id="1_rvamm"]
+
+[resource]
+script = ExtResource("1_rvamm")
+AllowMenu = true
+FadeLevelTitleInOut = false
+HasEpigraph = false
+PlayerExistsInLevel = true
+Environment = "wind"
+LevelName = "Island"
+LevelID = "Island"
+Level = ExtResource("1_884n6")
+Epigraph = ""

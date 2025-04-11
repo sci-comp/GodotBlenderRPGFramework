@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://dmun2byjeapoi"]
+
+[ext_resource type="Script" uid="uid://c56kgadb3fuil" path="res://addons/StandardAssets/Script/Level/LevelInfo.cs" id="1_2hgwp"]
+[ext_resource type="PackedScene" uid="uid://btl6rhjf4mykn" path="res://Level/Cave.tscn" id="1_r0f1b"]
+
+[resource]
+script = ExtResource("1_2hgwp")
+AllowMenu = true
+FadeLevelTitleInOut = false
+HasEpigraph = false
+PlayerExistsInLevel = true
+Environment = "wind"
+LevelName = "Cave"
+LevelID = "Cave"
+Level = ExtResource("1_r0f1b")
+Epigraph = ""

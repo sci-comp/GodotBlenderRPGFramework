@@ -1,0 +1,63 @@
+[gd_scene load_steps=13 format=3 uid="uid://cpbxu2g60vnq"]
+
+[ext_resource type="Script" uid="uid://boeifmaeewqud" path="res://addons/StandardAssets/Script/Level/LevelPortal.cs" id="1_k065a"]
+[ext_resource type="Material" uid="uid://4mruw3vlcdii" path="res://addons/StandardAssets/Material/Particle/MI_FX_Star_04.tres" id="2_8ugvs"]
+
+[sub_resource type="Curve" id="Curve_i6e0p"]
+_data = [Vector2(0, 360), 0.0, 0.0, 0, 0, Vector2(1e-05, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0, Vector2(1, -360), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_67v2p"]
+curve = SubResource("Curve_i6e0p")
+
+[sub_resource type="Gradient" id="Gradient_le4hr"]
+offsets = PackedFloat32Array(0, 0.100865, 0.233429, 0.489914, 0.766571, 1)
+colors = PackedColorArray(0.8, 0.847059, 0.396078, 0, 0.65098, 0.698039, 0.494118, 0.407843, 0.333483, 0.382828, 0.702888, 1, 0.309168, 0.625921, 0.702877, 1, 0.568627, 0.709804, 0.458824, 0.898039, 0.866667, 0.792157, 0.584314, 0.305882)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_j6776"]
+gradient = SubResource("Gradient_le4hr")
+
+[sub_resource type="Curve" id="Curve_5w1ab"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.4), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_4wjy6"]
+curve = SubResource("Curve_5w1ab")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7v5nw"]
+lifetime_randomness = 0.2
+emission_shape = 2
+emission_sphere_radius = 2.0
+angle_min = -64.5
+angle_max = 64.5
+angle_curve = SubResource("CurveTexture_67v2p")
+direction = Vector3(0, 0, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -3.0
+scale_min = 0.75
+scale_max = 1.25
+scale_curve = SubResource("CurveTexture_4wjy6")
+color_ramp = SubResource("GradientTexture1D_j6776")
+turbulence_noise_speed = Vector3(0, 6.48, 0)
+
+[sub_resource type="QuadMesh" id="QuadMesh_0xrto"]
+material = ExtResource("2_8ugvs")
+
+[sub_resource type="Skin" id="Skin_j5jd2"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ftc6w"]
+radius = 2.0
+
+[node name="VFX_Level_Portal" type="Area3D"]
+collision_mask = 2
+script = ExtResource("1_k065a")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+amount = 512
+process_material = SubResource("ParticleProcessMaterial_7v5nw")
+draw_pass_1 = SubResource("QuadMesh_0xrto")
+draw_skin = SubResource("Skin_j5jd2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_ftc6w")

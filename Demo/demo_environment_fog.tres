@@ -1,0 +1,21 @@
+[gd_resource type="Environment" load_steps=2 format=3 uid="uid://e6ygi335shhf"]
+
+[ext_resource type="Sky" uid="uid://slork6er5f8u" path="res://Demo/default_sky.tres" id="1_hbajo"]
+
+[resource]
+background_mode = 2
+sky = ExtResource("1_hbajo")
+ambient_light_source = 3
+reflected_light_source = 2
+ssao_enabled = true
+sdfgi_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.595165, 0.746213, 0.867115, 1)
+fog_light_energy = 0.7
+fog_sun_scatter = 0.05
+fog_density = 0.0
+fog_aerial_perspective = 1.0
+fog_height = 6.0
+fog_height_density = 0.15
+volumetric_fog_density = 0.005
+volumetric_fog_albedo = Color(0.290196, 0.439216, 0.568627, 1)

@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3 uid="uid://cofvl6bgrpwqo"]
+
+[ext_resource type="Material" uid="uid://dtadar3khr1iq" path="res://Demo/Material/MI_Demo_Stone.tres" id="1_d7msg"]
+[ext_resource type="Script" path="res://addons/StandardAssets/Script/Interact/Lever.cs" id="2_3op0b"]
+[ext_resource type="Material" uid="uid://c8tluwc4qvph4" path="res://Demo/Material/MI_Item_Highlighter.tres" id="3_qx5kh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cfekh"]
+size = Vector3(0.1, 0.8, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hpc6v"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_y1245"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5gxqj"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7u668"]
+
+[node name="PF_Demo_Lever-n1" type="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.800192, 0.180182)
+collision_layer = 32
+collision_mask = 4
+script = ExtResource("2_3op0b")
+rotateAround = 2
+_Title = "Call Platform"
+_Details = "There and Back"
+
+[node name="LeverArm" type="AnimatableBody3D" parent="."]
+transform = Transform3D(1, -1.49012e-08, 0, -1.53943e-08, 0.856258, -0.516548, 2.55185e-08, 0.516548, 0.856258, -2.22045e-16, -0.200297, -0.166858)
+collision_layer = 17
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LeverArm"]
+transform = Transform3D(1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_cfekh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LeverArm"]
+transform = Transform3D(0.1, 0, 0, 0, 0.8, 0, 0, 0, 0.1, 0, 0, 0)
+material_override = ExtResource("1_d7msg")
+material_overlay = ExtResource("3_qx5kh")
+mesh = SubResource("BoxMesh_hpc6v")
+
+[node name="Lever_Base" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.676364, -0.179976)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Lever_Base"]
+material_override = ExtResource("1_d7msg")
+mesh = SubResource("BoxMesh_y1245")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Lever_Base"]
+shape = SubResource("BoxShape3D_5gxqj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_7u668")

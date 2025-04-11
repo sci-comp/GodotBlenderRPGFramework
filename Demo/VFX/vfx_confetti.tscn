@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://fbtwdx1e3358"]
+
+[ext_resource type="Material" uid="uid://c13r8wqpp3xaa" path="res://Demo/VFX/ppm_confetti.tres" id="1_a0wsd"]
+[ext_resource type="Material" uid="uid://baav6d3mvcdpa" path="res://addons/StandardAssets/Material/Particle/MI_FX_Star_01.tres" id="2_qam7o"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_ix4et"]
+material = ExtResource("2_qam7o")
+
+[node name="vfx_confetti" type="GPUParticles3D"]
+amount = 2056
+lifetime = 32.0
+one_shot = true
+explosiveness = 1.0
+randomness = 0.1
+process_material = ExtResource("1_a0wsd")
+draw_pass_1 = SubResource("QuadMesh_ix4et")

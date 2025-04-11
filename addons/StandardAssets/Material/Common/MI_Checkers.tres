@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bkun7ytwxriir"]
+
+[ext_resource type="Texture2D" uid="uid://drcgb0dnkdsyb" path="res://addons/StandardAssets/Texture/Common/T_Checkers.png" id="1_m6uyo"]
+
+
+[resource]
+albedo_texture = ExtResource("1_m6uyo")

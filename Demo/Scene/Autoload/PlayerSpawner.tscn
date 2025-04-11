@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://0tiy6t62kkgs"]
+
+[ext_resource type="Script" path="res://addons/StandardAssets/Script/Level/PlayerSpawner.cs" id="1_5cagm"]
+
+[node name="PlayerSpawner" type="Node"]
+script = ExtResource("1_5cagm")
+PlayerPath = "res://Demo/Scene/Player.tscn"

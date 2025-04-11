@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://cmlnek1qdbjmq"]
+
+[ext_resource type="Material" uid="uid://dtadar3khr1iq" path="res://Demo/Material/MI_Demo_Stone.tres" id="2_i23at"]
+[ext_resource type="Material" uid="uid://bujf4p55a3kq7" path="res://Demo/Material/MI_Demo_Wood.tres" id="3_11aoi"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_hpc6v"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5gxqj"]
+
+[node name="PF_Demo_Gateway-n1" type="Node3D"]
+
+[node name="Base" type="StaticBody3D" parent="."]
+transform = Transform3D(-2.29093e-07, 0, 5.24103, 0, 3.15727, 0, -5.24103, 0, -2.29093e-07, 0.00238478, 0.343624, -1.21867)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Base"]
+material_override = ExtResource("2_i23at")
+mesh = SubResource("BoxMesh_hpc6v")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Base"]
+shape = SubResource("BoxShape3D_5gxqj")
+
+[node name="Ramp" type="StaticBody3D" parent="."]
+transform = Transform3D(-1.94349e-07, 3.62713e-08, 3.4712, 2.14937, 1.7165, 0, -4.44618, 0.82979, -1.51731e-07, -0.0575188, -0.0109228, 3.2059)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ramp"]
+material_override = ExtResource("2_i23at")
+mesh = SubResource("BoxMesh_hpc6v")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ramp"]
+shape = SubResource("BoxShape3D_5gxqj")
+
+[node name="Wood_Platform" type="StaticBody3D" parent="."]
+transform = Transform3D(0.0188834, 0, 1.32747, 0, 0.799767, 0, -1.32747, 0, 0.0188834, 0.00238478, 1.57513, -1.21867)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wood_Platform"]
+material_override = ExtResource("3_11aoi")
+mesh = SubResource("BoxMesh_hpc6v")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wood_Platform"]
+shape = SubResource("BoxShape3D_5gxqj")

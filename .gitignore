@@ -1,0 +1,16 @@
+# Godot 4+ specific ignores
+
+.godot*
+.Screenshot*
+.Temp*
+.vs*
+
+*.csproj
+*.csproj.*
+*.sln
+*.tmp
+*.old
+*.old*
+
+# Necessary when building Godot to Windows
+rcedit-x86.exe

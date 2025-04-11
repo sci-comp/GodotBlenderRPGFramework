@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://cw24f8685okx2"]
+
+[ext_resource type="PackedScene" uid="uid://lnyo5jc0pomy" path="res://Level/Epigraph.tscn" id="1_rp25s"]
+[ext_resource type="Script" uid="uid://c56kgadb3fuil" path="res://addons/StandardAssets/Script/Level/LevelInfo.cs" id="2_pq5uj"]
+
+[resource]
+script = ExtResource("2_pq5uj")
+AllowMenu = false
+FadeLevelTitleInOut = false
+HasEpigraph = false
+PlayerExistsInLevel = false
+Environment = "wind"
+LevelName = "Epigraph"
+LevelID = "Epigraph"
+Level = ExtResource("1_rp25s")
+Epigraph = ""
