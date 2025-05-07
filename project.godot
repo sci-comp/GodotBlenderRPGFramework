@@ -18,17 +18,19 @@ config/windows_native_icon="res://godot_icon.ico"
 
 [audio]
 
-buses/default_bus_layout="res://addons/StandardAssets/Default/default_bus_layout.tres"
+buses/default_bus_layout="uid://c7wx7hws2xoig"
 
 [autoload]
 
+Preferences="*res://addons/StandardAssets/Script/Preferences/Preferences.cs"
 LevelManager="*res://Demo/Scene/Autoload/LevelManager.tscn"
 SaveManager="*res://Demo/Script/SaveManager.cs"
-CameraBridge="*res://Demo/Script/CameraBridge.cs"
 PlayerSpawner="*res://Demo/Scene/Autoload/PlayerSpawner.tscn"
 SFX="*res://Demo/Scene/Autoload/SFX.tscn"
 Particles="*res://Demo/Scene/Autoload/Particles.tscn"
 SimpleGrass="*res://addons/simplegrasstextured/singleton.tscn"
+PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
+CameraBridge="*res://Demo/Scene/Autoload/CameraBridge.tscn"
 
 [display]
 
@@ -40,7 +42,7 @@ project/assembly_name="GodotBlenderRPGFramework"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/SceneBuilder/addons/SceneBuilder/plugin.cfg", "res://addons/simplegrasstextured/plugin.cfg", "res://addons/terrain_3d/plugin.cfg")
+enabled=PackedStringArray("res://addons/SceneBuilder/addons/SceneBuilder/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/simplegrasstextured/plugin.cfg", "res://addons/terrain_3d/plugin.cfg")
 
 [file_customization]
 

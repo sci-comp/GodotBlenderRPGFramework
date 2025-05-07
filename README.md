@@ -23,6 +23,7 @@ This project depends on, but does not include, the following plug-ins:
 
 1) [Terrain3D](https://github.com/TokisanGames/Terrain3D)
 2) [Godot Dialogue Manager](https://github.com/nathanhoad/godot_dialogue_manager)
+3) [Phantom Camera](https://github.com/ramokz/phantom-camera)
 
 First, download current versions of these programs and place them into /addons/.
 

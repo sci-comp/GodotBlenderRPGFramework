@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://y0wbbfugjd8s"]
+[gd_scene load_steps=64 format=3 uid="uid://y0wbbfugjd8s"]
 
 [ext_resource type="Script" uid="uid://boeifmaeewqud" path="res://addons/StandardAssets/Script/Level/LevelPortal.cs" id="2_ebj85"]
 [ext_resource type="Material" uid="uid://4mruw3vlcdii" path="res://addons/StandardAssets/Material/Particle/MI_FX_Star_04.tres" id="3_jg6fm"]
@@ -30,6 +30,10 @@
 [ext_resource type="Texture2D" uid="uid://dvqcyck5vuqwd" path="res://Demo/Texture/ground037_nrm_rgh.png" id="28_ebj85"]
 [ext_resource type="Texture2D" uid="uid://blyrvtbf0wu7h" path="res://Demo/Texture/rock023_alb_ht.png" id="29_jg6fm"]
 [ext_resource type="PackedScene" uid="uid://8tl1ghmq6i1w" path="res://addons/StandardAssets/Scene/Ocean.tscn" id="30_vl0vs"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_vl0vs"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4l1pe"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mbon0"]
 size = Vector3(400, 40, 400)
@@ -210,10 +214,23 @@ radius = 2.0
 
 [node name="Island" type="Node3D"]
 
+[node name="Actor" type="Node" parent="."]
+
+[node name="TestNPC" type="Node3D" parent="Actor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.5656, 11.9366, -11.912)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Actor/TestNPC"]
+mesh = SubResource("CapsuleMesh_vl0vs")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Actor/TestNPC"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Actor/TestNPC/StaticBody3D"]
+shape = SubResource("CapsuleShape3D_4l1pe")
+
 [node name="Egress" type="Node" parent="."]
 
 [node name="OutOfBounds" type="Area3D" parent="Egress"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.2951, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21.439, 0)
 collision_mask = 4
 script = ExtResource("21_6dln4")
 
@@ -285,6 +302,7 @@ script = ExtResource("27_cprpn")
 
 [node name="PF_Demo_Lever-n1" parent="Interactable/LeverHub_On_Stone_Arch" instance=ExtResource("21_6go27")]
 transform = Transform3D(-0.828207, 0, -0.560422, 0, 1, 0, 0.560422, 0, -0.828207, 109.558, 22.3736, 72.1697)
+rotateAround = 5
 
 [node name="Path3D" type="Path3D" parent="Interactable/LeverHub_On_Stone_Arch"]
 transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 127.765, 15.4302, 31.4321)
@@ -299,7 +317,7 @@ RestDuration = 4.0
 remote_path = NodePath("../../../Platform_ThereAndBack")
 
 [node name="Platform_ThereAndBack" type="AnimatableBody3D" parent="Interactable/LeverHub_On_Stone_Arch"]
-transform = Transform3D(-0.262134, -0.087173, -0.961085, 3.72519e-09, 0.995875, -0.0903356, 0.965001, -0.0236798, -0.261071, 126.046, 17.1493, 26.9547)
+transform = Transform3D(-0.262135, -0.087173, -0.961085, 3.72519e-09, 0.995875, -0.0903356, 0.965001, -0.0236798, -0.261071, 126.046, 17.1493, 26.9547)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Interactable/LeverHub_On_Stone_Arch/Platform_ThereAndBack"]
 transform = Transform3D(2, 0, 0, 0, 0.5, 0, 0, 0, 3, 0, 0, 0)
@@ -418,6 +436,7 @@ shadow_enabled = true
 data_directory = "res://Data/Terrain"
 material = SubResource("Terrain3DMaterial_il25k")
 assets = SubResource("Terrain3DAssets_0g2yn")
+free_editor_textures = false
 top_level = true
 metadata/_edit_lock_ = true
 
@@ -470,10 +489,13 @@ transform = Transform3D(-0.128251, 0, -0.522695, 0, 0.5382, 0, 0.522695, 0, -0.1
 transform = Transform3D(0.40178, 0, -0.0475254, 0, 0.404581, 0, 0.0475254, 0, 0.40178, 106.724, 15.2828, 33.8698)
 
 [node name="PF_Rock_Boulder-n7" parent="Static/Geometry" instance=ExtResource("7_5e8ve")]
-transform = Transform3D(-0.783765, -0.257743, -1.26087, -0.529382, 1.41018, 0.0408026, 1.17302, 0.464197, -0.824047, -47.8238, 5.81012, -31.0957)
+transform = Transform3D(-0.783765, -0.257743, -1.26087, -0.529382, 1.41018, 0.0408026, 1.17302, 0.464197, -0.824047, -44.3294, 5.81012, -31.0957)
 
 [node name="PF_Rock_Boulder-n5" parent="Static/Geometry" instance=ExtResource("7_5e8ve")]
 transform = Transform3D(0.528959, -0.373996, 0.93988, 0.235048, 1.07704, 0.29629, -0.983869, 0.0562341, 0.576094, -52.1631, 16.1333, -6.55641)
+
+[node name="PF_Rock_Boulder-n8" parent="Static/Geometry" instance=ExtResource("7_5e8ve")]
+transform = Transform3D(-0.109419, -1.1337, -0.076206, 0.568395, -0.120903, 0.982525, -0.983869, 0.0562341, 0.576094, -55.4467, 2.67013, -7.1743)
 
 [node name="PF_Rock_Boulder-n3" parent="Static/Geometry" instance=ExtResource("7_5e8ve")]
 transform = Transform3D(1.67525, -0.272414, -0.338741, 0.356375, 1.63298, 0.449228, 0.2489, -0.504578, 1.63673, -33.3403, 14.3267, -23.0215)
@@ -481,11 +503,20 @@ transform = Transform3D(1.67525, -0.272414, -0.338741, 0.356375, 1.63298, 0.4492
 [node name="PF_Rock_Overhang-n1" parent="Static/Geometry" instance=ExtResource("10_ooys7")]
 transform = Transform3D(0.670827, 0, -1.28914, 0, 1.45324, 0, 1.28914, 0, 0.670827, 4.76125, 21.0922, -26.3098)
 
+[node name="PF_Rock_Overhang-n5" parent="Static/Geometry" instance=ExtResource("10_ooys7")]
+transform = Transform3D(-0.0469305, 0.694138, 0.573883, 0.242794, 0.563139, -0.661283, -0.867304, 0.120086, -0.216173, -6.2888, 19.9309, -16.8887)
+
+[node name="PF_Rock_Overhang-n3" parent="Static/Geometry" instance=ExtResource("10_ooys7")]
+transform = Transform3D(1.22953, 0, -1.13264, 0, 1.67172, 0, 1.13264, 0, 1.22953, -11.1381, 23.4391, -24.11)
+
 [node name="PF_Rock_Boulder-n4" parent="Static/Geometry" instance=ExtResource("7_5e8ve")]
 transform = Transform3D(-1.02084, 0.125356, 0.0456945, 0.12819, 1.01927, 0.0676425, -0.037003, 0.0727614, -1.02628, -37.4191, 23.9511, -4.93674)
 
 [node name="PF_Rock_Overhang-n2" parent="Static/Geometry" instance=ExtResource("10_ooys7")]
 transform = Transform3D(-1.91583, 0, 3.38584e-05, 0, 1.91583, 0, -3.38584e-05, 0, -1.91583, -20.345, 20.046, 6.15047)
+
+[node name="PF_Rock_Overhang-n4" parent="Static/Geometry" instance=ExtResource("10_ooys7")]
+transform = Transform3D(-1.56564, 0, -0.452935, 0, 1.62984, 0, 0.452935, 0, -1.56564, -17.4742, 17.8653, 9.5515)
 
 [node name="PF_Rock_Boulder-n6" parent="Static/Geometry" instance=ExtResource("7_5e8ve")]
 transform = Transform3D(-0.54121, -0.581091, 1.2806, -0.251106, 1.39004, 0.52463, -1.38367, -0.0249735, -0.596103, -34.424, 10.6127, -42.5176)
@@ -499,16 +530,22 @@ transform = Transform3D(0.81356, 0, 0.585033, 0, 1.00207, 0, -0.585033, 0, 0.813
 transform = Transform3D(1.70867, 0.0823044, -0.262846, -0.0336278, 1.70164, 0.314226, 0.27337, -0.305115, 1.68155, -8.95735, 7.34745, -43.8048)
 
 [node name="PF_Rock_Boulder-n3" parent="Static/Other" instance=ExtResource("7_5e8ve")]
-transform = Transform3D(-0.0953937, -0.256607, 1.3794, -0.0273242, 1.38266, 0.255323, -1.40279, -0.00948177, -0.0987769, -22.8215, 17.0616, -51.5308)
+transform = Transform3D(-0.0953937, -0.256607, 1.3794, -0.891998, 1.0783, 0.138905, -1.08301, -0.865514, -0.235907, -22.0148, 13.6718, -48.8099)
 
 [node name="PF_Rock_Boulder-n4" parent="Static/Other" instance=ExtResource("7_5e8ve")]
 transform = Transform3D(1.38586, 0.0695808, -0.22849, -0.0273242, 1.38266, 0.255323, 0.237281, -0.247175, 1.36392, -24.7723, 4.68321, -53.2985)
 
 [node name="PF_Rock_Boulder-n5" parent="Static/Other" instance=ExtResource("7_5e8ve")]
-transform = Transform3D(-1.24861, -0.0658445, -0.643673, -0.0158911, 1.4017, -0.112561, 0.646834, -0.0926666, -1.24527, -41.7165, 6.15776, -50.7715)
+transform = Transform3D(-0.608787, -1.10381, 0.623432, -1.21004, 0.299784, -0.650848, 0.377951, -0.818183, -1.07954, -44.1528, 6.15776, -41.7308)
 
 [node name="PF_Rock_Boulder-n2" parent="Static/Other" instance=ExtResource("7_5e8ve")]
 transform = Transform3D(-0.353823, 0.209963, -1.68112, -0.381452, 1.66342, 0.288037, 1.65068, 0.429403, -0.293787, -37.971, 2.68721, 10.2833)
+
+[node name="PF_Rock_Boulder-n6" parent="Static/Other" instance=ExtResource("7_5e8ve")]
+transform = Transform3D(-0.552907, -1.60513, -0.336571, -1.63125, 0.501505, 0.288037, -0.169607, 0.40924, -1.67308, -46.5858, -0.634333, 8.06431)
+
+[node name="PF_Rock_Boulder-n7" parent="Static/Other" instance=ExtResource("7_5e8ve")]
+transform = Transform3D(-0.22712, -1.34824, 1.06119, -1.63125, 0.501505, 0.288037, -0.531874, -0.962389, -1.33655, -49.1083, 0.850105, -19.0349)
 
 [node name="PF_Rock_Riser_Slant-n1" parent="Static/Other" instance=ExtResource("9_nqqq2")]
 transform = Transform3D(0.0252345, 0, -1.00175, 0, 1.00207, 0, 1.00175, 0, 0.0252345, 21.4426, 7.39048, -22.8379)
@@ -567,7 +604,7 @@ transform = Transform3D(0.814907, 0.127509, 0.288088, 0.186354, 0.561685, -0.705
 transform = Transform3D(0.230729, 0, -0.78628, 0, 0.819435, 0, 0.78628, 0, 0.230729, -9.21912, 3.13865, 23.3565)
 
 [node name="Signpost_Cave" parent="Static/Obstacles" instance=ExtResource("22_pitnc")]
-transform = Transform3D(-0.417174, 0, -0.10158, 0, 0.429363, 0, 0.10158, 0, -0.417174, 2.45456, 2.61399, -1.20899)
+transform = Transform3D(-0.417174, 0, -0.10158, 0, 0.429363, 0, 0.10158, 0, -0.417174, 2.45456, 10.8153, -1.20899)
 script = null
 
 [node name="Trigger" type="Node" parent="."]
@@ -581,6 +618,7 @@ transform = Transform3D(-0.051165, -0.000153807, -0.122041, 1.91997e-05, -0.5609
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72.4302, 32.837, 31.3154)
 script = ExtResource("26_vl0vs")
 IconTexture = ExtResource("27_4l1pe")
+DisplayName = "Goalpost"
 
 [node name="vfx" type="Area3D" parent="Trigger/Goalpost_On_Tall_Henge"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72.5237, 34.0559, 31.3513)

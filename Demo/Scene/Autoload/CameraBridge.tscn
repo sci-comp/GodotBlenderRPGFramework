@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://64jdddq18o5h"]
+
+[ext_resource type="Script" uid="uid://cr8loa23jucng" path="res://Demo/Script/CameraBridge.cs" id="1_obuy3"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_0dwfc"]
+
+[node name="CameraBridge" type="Node"]
+script = ExtResource("1_obuy3")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="PhantomCameraHost" type="Node" parent="Camera3D"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("2_0dwfc")
+metadata/_custom_type_script = "uid://bd046eokvcnu2"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)

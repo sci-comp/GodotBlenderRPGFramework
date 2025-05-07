@@ -1,12 +1,19 @@
 using Godot;
+using System;
 
 namespace Game
 {
+    /// <summary>
+    /// This is a placeholder script demonstrating interaction with StandardAssets
+    /// </summary>
     public partial class CharacterHub : Node
     {
         private CameraBridge cameraBridge;
         private ProximityDetector proximityDetector;
         private CharacterBody3D player;
+
+        public static event Action<CharacterHub> Spawned;
+        public static event Action<CharacterHub> Destroyed;
 
         public override void _Ready()
         {
@@ -17,7 +24,14 @@ namespace Game
 
             proximityDetector.Initialize();
 
+            Spawned?.Invoke(this);
+
             GD.Print("[CharacterHub] Ready");
+        }
+
+        public override void _ExitTree()
+        {
+            Destroyed?.Invoke(this);
         }
 
         public void SetCharacterPosition(Vector3 position)
