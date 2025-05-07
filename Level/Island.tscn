@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://y0wbbfugjd8s"]
+[gd_scene load_steps=71 format=3 uid="uid://y0wbbfugjd8s"]
 
 [ext_resource type="Script" uid="uid://d18f27ht4mqn4" path="res://addons/StandardAssets/Script/Dialogue/DialogueActor.cs" id="2_4l1pe"]
 [ext_resource type="Script" uid="uid://boeifmaeewqud" path="res://addons/StandardAssets/Script/Level/LevelPortal.cs" id="2_ebj85"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="6_ebj85"]
 [ext_resource type="PackedScene" uid="uid://bcdixo0uw7igd" path="res://Demo/Scene/Stone/PF_Rock_Boulder.glb" id="7_5e8ve"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="7_jg6fm"]
+[ext_resource type="Script" uid="uid://dnih3s0gsx0c3" path="res://addons/StandardAssets/Script/Dialogue/reset_pcam_priority_on_dialogue_ended.gd" id="8_jg6fm"]
 [ext_resource type="PackedScene" uid="uid://dcf27axl81pxk" path="res://Demo/Scene/Stone/PF_Rock_Riser_Henge.glb" id="8_l0s28"]
 [ext_resource type="PackedScene" uid="uid://b8h3n1lu0cty5" path="res://Demo/Scene/Stone/PF_Rock_Riser_Slant.glb" id="9_nqqq2"]
 [ext_resource type="PackedScene" uid="uid://c5gec85a0kuek" path="res://Demo/Scene/Stone/PF_Rock_Overhang.glb" id="10_ooys7"]
@@ -286,6 +287,9 @@ transform = Transform3D(-0.70214, 0.17773, -0.689501, 0, 0.968347, 0.249607, 0.7
 script = ExtResource("6_ebj85")
 tween_resource = SubResource("Resource_p4gos")
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="Reset" type="Node" parent="Actor/Edward/PhantomCamera3D"]
+script = ExtResource("8_jg6fm")
 
 [node name="Egress" type="Node" parent="."]
 
