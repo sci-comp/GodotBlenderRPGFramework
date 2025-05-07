@@ -10,8 +10,9 @@
 *.old
 *.old*
 
+addons/dialogue_manager
+addons/phantom_camera
 addons/SceneBuilder
 addons/terrain_3d
-addons/phantom_camera
 
 rcedit-x86.exe  # Necessary when building Godot to Windows

@@ -10,3 +10,5 @@ https://ambientcg.com/view?id=Rock030
 
 Cliff:
 https://ambientcg.com/view?id=Rock023
+
+Letters for "N, E, W, S" in the compass UI are font GourdyMedieval Thin

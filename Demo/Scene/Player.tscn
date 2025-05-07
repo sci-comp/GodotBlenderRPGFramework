@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://cc1m2a1obsyn4"]
+[gd_scene load_steps=12 format=3 uid="uid://cc1m2a1obsyn4"]
 
 [ext_resource type="Script" uid="uid://c3cigq1c6nivm" path="res://Demo/Script/character.gd" id="1_0t4e8"]
 [ext_resource type="Script" uid="uid://hdsvtpxi0o2d" path="res://Demo/Script/CharacterHub.cs" id="1_p8ic4"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="3_cljnr"]
 [ext_resource type="Script" uid="uid://drsrgffrpto72" path="res://addons/StandardAssets/Script/Interact/ProximityDetector.cs" id="4_5a40d"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_fx7e7"]
+[ext_resource type="PackedScene" uid="uid://voiq5jjerjsw" path="res://Demo/Scene/Compass.tscn" id="6_cljnr"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kp17n"]
 albedo_color = Color(0.909804, 0.596078, 0, 1)
@@ -46,6 +47,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 [node name="PhantomCamera3D" type="Node3D" parent="Player/Head"]
 transform = Transform3D(1, 0, 0, 0, 0.999391, -0.0348995, 0, 0.0348995, 0.999391, 0, 0, 0)
 script = ExtResource("3_cljnr")
+priority = 3
 tween_resource = SubResource("Resource_oabsn")
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
@@ -92,3 +94,5 @@ offset_left = 512.0
 offset_top = 480.0
 offset_right = 640.0
 offset_bottom = 507.0
+
+[node name="Compass" parent="Player" instance=ExtResource("6_cljnr")]

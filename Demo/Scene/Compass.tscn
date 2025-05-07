@@ -1,0 +1,82 @@
+[gd_scene load_steps=6 format=3 uid="uid://voiq5jjerjsw"]
+
+[ext_resource type="Texture2D" uid="uid://ckijuwqf1qcnq" path="res://Demo/Texture/T_Letter_N.png" id="1_5rj4m"]
+[ext_resource type="Script" uid="uid://brnl7todvn4po" path="res://addons/StandardAssets/Script/Compass/Compass.cs" id="1_eeul1"]
+[ext_resource type="Texture2D" uid="uid://b3bvk2qv4yv5k" path="res://Demo/Texture/T_Letter_S.png" id="2_eeul1"]
+[ext_resource type="Texture2D" uid="uid://cnhkv80e6euxa" path="res://Demo/Texture/T_Letter_E.png" id="3_kd18v"]
+[ext_resource type="Texture2D" uid="uid://cqx4kqhu8qel0" path="res://Demo/Texture/T_Letter_W.png" id="4_p6ip8"]
+
+[node name="Compass" type="Panel"]
+custom_minimum_size = Vector2(64, 32)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -304.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = 48.0
+grow_horizontal = 0
+script = ExtResource("1_eeul1")
+BeginVisible = true
+
+[node name="North" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 136.0
+offset_top = 8.0
+offset_right = 152.0
+offset_bottom = 24.0
+texture = ExtResource("1_5rj4m")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="South" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 136.0
+offset_top = 8.0
+offset_right = 152.0
+offset_bottom = 24.0
+texture = ExtResource("2_eeul1")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="East" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 136.0
+offset_top = 8.0
+offset_right = 152.0
+offset_bottom = 24.0
+texture = ExtResource("3_kd18v")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="West" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 136.0
+offset_top = 8.0
+offset_right = 152.0
+offset_bottom = 24.0
+texture = ExtResource("4_p6ip8")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 32.0
+offset_right = 264.0
+offset_bottom = 49.0
+theme_override_colors/font_color = Color(0.968022, 0.870226, 0.747156, 1)
+theme_override_font_sizes/font_size = 12
+text = "Edward"
+horizontal_alignment = 1
+
+[node name="LabelDistance" type="Label" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 48.0
+offset_right = 264.0
+offset_bottom = 65.0
+theme_override_colors/font_color = Color(0.968627, 0.870588, 0.74902, 1)
+theme_override_font_sizes/font_size = 12
+text = "150' (above)"
+horizontal_alignment = 1

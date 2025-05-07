@@ -1,0 +1,40 @@
+~ edward_on_the_island
+
+Edward: [#greet] [[Hello|Hi]], good morning! Doing well? Don't forget to breathe!
+
+- Good morning! I'm doing great.
+- Could be better.
+- <End> => END!
+
+%1 Edward: All the same to me.
+%1 Edward: Sounds about right.
+
+Edward: Let's try to format branching dialogue.
+
+- Tell me about the sky. =>< sky
+- Tell me about the sea. =>< sea
+- <End> => END!
+
+Edward: We've reached the end.
+
+- Then let's end the conversation.
+
+=> END
+
+# --------------------------------------------------------------------------------
+
+~ sky
+
+Edward: The sky is blue, let's return to the main conversation.
+
+=> END
+
+# --------------------------------------------------------------------------------
+
+~ sea
+
+Edward: The sea? Well, it's wet and wavey. Our detour has concluded, returning to the main conversation.
+
+=> END
+
+# --------------------------------------------------------------------------------
