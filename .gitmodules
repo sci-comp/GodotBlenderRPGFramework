@@ -1,6 +1,6 @@
-[submodule "addons/StandardAssets"]
-	path = addons/StandardAssets
-	url = https://github.com/sci-comp/StandardAssets
 [submodule "addons/EditorToolbox"]
 	path = addons/EditorToolbox
 	url = https://github.com/sci-comp/EditorToolbox
+[submodule "addons/StandardAssets"]
+	path = addons/StandardAssets
+	url = https://github.com/sci-comp/StandardAssets
