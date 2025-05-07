@@ -1,8 +1,0 @@
-Demo textures were hosted by https://ambientcg.com/
-
-The UV Checkers are from Blender.
-
-Prototype grid textures are from Kenney's prototype textures kit.
-
-All other contributions are MIT.
-
