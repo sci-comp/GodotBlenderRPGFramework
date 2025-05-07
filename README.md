@@ -19,11 +19,18 @@ The StandardAssets repository is a submodule that aims to be a lightweight and r
 
 ## Installation
 
-Simply type,
+This project depends on, but does not include, the following plug-ins:
+
+1) [Terrain3D](https://github.com/TokisanGames/Terrain3D)
+2) [Godot Dialogue Manager](https://github.com/nathanhoad/godot_dialogue_manager)
+
+First, download current versions of these programs and place them into /addons/.
+
+Next, to install this project, simply type,
 
 `git clone https://github.com/sci-comp/GodotBlenderRPGFramework`
 
-or use Github Desktop. By cloning, the [StandardAssets](https://github.com/sci-comp/StandardAssets) submodule will automatically be included.
+or use Github Desktop. By cloning, the [EditorToolbox](https://github.com/sci-comp/StandardAssets) and [EditorToolbox](https://github.com/sci-comp/StandardAssets) submodules will automatically be included.
 
 ### Adding and Removing Submodules
 

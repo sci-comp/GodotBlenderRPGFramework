@@ -1,0 +1,54 @@
+[gd_resource type="Resource" script_class="CollectionNames" load_steps=2 format=3 uid="uid://btjf32jrgsji"]
+
+[ext_resource type="Script" uid="uid://bbqiktl78acmh" path="res://addons/SceneBuilder/addons/SceneBuilder/scene_builder_collections.gd" id="1_gy6hc"]
+
+[resource]
+script = ExtResource("1_gy6hc")
+name_01 = ""
+name_02 = ""
+name_03 = ""
+name_04 = ""
+name_05 = ""
+name_06 = ""
+font_color_01 = Color(1, 1, 1, 1)
+font_color_02 = Color(1, 1, 1, 1)
+font_color_03 = Color(1, 1, 1, 1)
+font_color_04 = Color(1, 1, 1, 1)
+font_color_05 = Color(1, 1, 1, 1)
+font_color_06 = Color(1, 1, 1, 1)
+name_07 = ""
+name_08 = ""
+name_09 = ""
+name_10 = ""
+name_11 = ""
+name_12 = ""
+font_color_07 = Color(1, 1, 1, 1)
+font_color_08 = Color(1, 1, 1, 1)
+font_color_09 = Color(1, 1, 1, 1)
+font_color_10 = Color(1, 1, 1, 1)
+font_color_11 = Color(1, 1, 1, 1)
+font_color_12 = Color(1, 1, 1, 1)
+name_13 = ""
+name_14 = ""
+name_15 = ""
+name_16 = ""
+name_17 = ""
+name_18 = ""
+font_color_13 = Color(1, 1, 1, 1)
+font_color_14 = Color(1, 1, 1, 1)
+font_color_15 = Color(1, 1, 1, 1)
+font_color_16 = Color(1, 1, 1, 1)
+font_color_17 = Color(1, 1, 1, 1)
+font_color_18 = Color(1, 1, 1, 1)
+name_19 = ""
+name_20 = ""
+name_21 = ""
+name_22 = ""
+name_23 = ""
+name_24 = ""
+font_color_19 = Color(1, 1, 1, 1)
+font_color_20 = Color(1, 1, 1, 1)
+font_color_21 = Color(1, 1, 1, 1)
+font_color_22 = Color(1, 1, 1, 1)
+font_color_23 = Color(1, 1, 1, 1)
+font_color_24 = Color(1, 1, 1, 1)

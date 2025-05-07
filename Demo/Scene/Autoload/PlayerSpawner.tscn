@@ -1,7 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://0tiy6t62kkgs"]
+[gd_scene load_steps=3 format=3 uid="uid://0tiy6t62kkgs"]
 
-[ext_resource type="Script" path="res://addons/StandardAssets/Script/Level/PlayerSpawner.cs" id="1_5cagm"]
+[ext_resource type="Script" uid="uid://clp3dg3p8pl7p" path="res://addons/StandardAssets/Script/Level/PlayerSpawner.cs" id="1_5cagm"]
+[ext_resource type="PackedScene" uid="uid://cc1m2a1obsyn4" path="res://Demo/Scene/Player.tscn" id="2_32l8m"]
 
 [node name="PlayerSpawner" type="Node"]
 script = ExtResource("1_5cagm")
-PlayerPath = "res://Demo/Scene/Player.tscn"
+Player = ExtResource("2_32l8m")

@@ -2,27 +2,26 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://chpdxascm4f4o"
-path.s3tc="res://.godot/imported/T_Stump.png-8c4fdb961fa4b73eaba2bbd1e78db42f.s3tc.ctex"
+uid="uid://1mquxrw3hsq8"
+path="res://.godot/imported/ground037_alb_ht.png-ac6bffc9bf8b5ca63b079db657c55189.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://Demo/Texture/T_Stump.png"
-dest_files=["res://.godot/imported/T_Stump.png-8c4fdb961fa4b73eaba2bbd1e78db42f.s3tc.ctex"]
+source_file="res://Demo/Texture/ground037_alb_ht.png"
+dest_files=["res://.godot/imported/ground037_alb_ht.png-ac6bffc9bf8b5ca63b079db657c55189.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -32,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

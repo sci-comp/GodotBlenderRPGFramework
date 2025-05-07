@@ -40,7 +40,7 @@ project/assembly_name="GodotBlenderRPGFramework"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/simplegrasstextured/plugin.cfg")
+enabled=PackedStringArray("res://addons/SceneBuilder/addons/SceneBuilder/plugin.cfg", "res://addons/simplegrasstextured/plugin.cfg", "res://addons/terrain_3d/plugin.cfg")
 
 [file_customization]
 
@@ -52,11 +52,7 @@ folder_colors={
 "res://Demo/Texture/": "yellow",
 "res://Demo/VFX/": "orange",
 "res://Level/": "green",
-"res://Todo/": "red",
-"res://addons/StandardAssets/Material/": "orange",
-"res://addons/StandardAssets/Prefab/": "blue",
-"res://addons/StandardAssets/Script/": "pink",
-"res://addons/StandardAssets/Texture/": "yellow"
+"res://Todo/": "red"
 }
 
 [filesystem]
