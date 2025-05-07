@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://d18f27ht4mqn4" path="res://addons/StandardAssets/Script/Dialogue/DialogueActor.cs" id="2_4l1pe"]
 [ext_resource type="Script" uid="uid://boeifmaeewqud" path="res://addons/StandardAssets/Script/Level/LevelPortal.cs" id="2_ebj85"]
 [ext_resource type="Material" uid="uid://4mruw3vlcdii" path="res://addons/StandardAssets/Material/Particle/MI_FX_Star_04.tres" id="3_jg6fm"]
-[ext_resource type="TextFile" uid="uid://bjnq8sa3jo75k" path="res://Data/Dialogue/edward_on_the_island.dialogue" id="3_xfvjt"]
+[ext_resource type="Resource" uid="uid://bjnq8sa3jo75k" path="res://Data/Dialogue/edward_on_the_island.dialogue" id="3_xfvjt"]
 [ext_resource type="PackedScene" uid="uid://blxngopptepmp" path="res://Demo/Scene/Stone/PF_Rock_Cave.glb" id="6_5p8te"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="6_ebj85"]
 [ext_resource type="PackedScene" uid="uid://bcdixo0uw7igd" path="res://Demo/Scene/Stone/PF_Rock_Boulder.glb" id="7_5e8ve"]
@@ -381,7 +381,7 @@ RestDuration = 4.0
 remote_path = NodePath("../../../Platform_ThereAndBack")
 
 [node name="Platform_ThereAndBack" type="AnimatableBody3D" parent="Interactable/LeverHub_On_Stone_Arch"]
-transform = Transform3D(-0.262135, -0.087173, -0.961085, 3.72519e-09, 0.995875, -0.0903356, 0.965001, -0.0236798, -0.261071, 126.046, 25.7758, 26.9547)
+transform = Transform3D(-0.262134, -0.087173, -0.961085, 3.72519e-09, 0.995875, -0.0903356, 0.965001, -0.0236798, -0.261071, 126.046, 25.7758, 26.9547)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Interactable/LeverHub_On_Stone_Arch/Platform_ThereAndBack"]
 transform = Transform3D(2, 0, 0, 0, 0.5, 0, 0, 0, 3, 0, 0, 0)
