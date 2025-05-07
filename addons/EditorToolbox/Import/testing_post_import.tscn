@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://pc6xrshe5fhr"]
-
-[ext_resource type="PackedScene" uid="uid://bp3cyphunxjy" path="res://addons/EditorToolbox/Import/PF_Test_Collision.glb" id="1_qdx0m"]
-
-[node name="TestingPostImport" type="Node3D"]
-
-[node name="PF_Test_Collision-n1" parent="." instance=ExtResource("1_qdx0m")]
