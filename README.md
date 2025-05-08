@@ -29,29 +29,33 @@ First, download current versions of these programs and place them into /addons/.
 
 Next, to install this project, simply type,
 
-`git clone https://github.com/sci-comp/GodotBlenderRPGFramework`
+`git clone --recurse-submodules https://github.com/sci-comp/GodotBlenderRPGFramework`
 
-or use Github Desktop. By cloning, the [EditorToolbox](https://github.com/sci-comp/StandardAssets) and [EditorToolbox](https://github.com/sci-comp/StandardAssets) submodules will automatically be included.
+or use Github Desktop. By cloning with `--recurse-submodules`, the [StandardAssets](https://github.com/sci-comp/StandardAssets) and [EditorToolbox](https://github.com/sci-comp/EditorToolbox) submodules will automatically be included.
+
+Next, we must generate our C\# solution by clicking: Project \> Tools \> C\# \> Create C\# solution
+
+We should now be able to build and play.
 
 ### Adding and Removing Submodules
 
-The following is a helpful reminders for adding and removing submodules.
+The following are helpful reminders for adding and removing submodules.
 
 Note for Github Desktop users: Github Desktop cannot add or remove submodules. However, once a submodule has been added through the console, we can manage it from within the Github Desktop UI.
 
-We can add submodules with,
+We can add submodules individually by,
 
 	- git submodule add --force https://github.com/sci-comp/ExampleSubmodule addons/ExampleSubmodule
 	- git submodule init
 	- git submodule update
 
-We remove submodules with,
+We remove submodules individually by,
 
 	- git submodule deinit -f addons/ExampleSubmodule
 	- git rm --cached addons/ExampleSubmodule
 	- rm -r addons/ExampleSubmodule
 
-If you delete a submodule without first calling submodule deinit, which is an easy mistake to make, then we have to manully remove the submodule references in the following locations,
+If we delete a submodule without first calling submodule deinit, which is an easy mistake to make, then we have to manully remove the submodule references in the following locations,
 
 	- ./.git/config
 	- ./.git/modules/
