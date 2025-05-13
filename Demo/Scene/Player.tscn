@@ -19,7 +19,7 @@ material = SubResource("StandardMaterial3D_kp17n")
 
 [sub_resource type="Resource" id="Resource_oabsn"]
 script = ExtResource("4_fx7e7")
-duration = 1.0
+duration = 0.0
 transition = 0
 ease = 2
 

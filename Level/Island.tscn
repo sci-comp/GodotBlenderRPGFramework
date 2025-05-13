@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://y0wbbfugjd8s"]
+[gd_scene load_steps=75 format=3 uid="uid://y0wbbfugjd8s"]
 
 [ext_resource type="Script" uid="uid://d18f27ht4mqn4" path="res://addons/StandardAssets/Script/Dialogue/DialogueActor.cs" id="2_4l1pe"]
 [ext_resource type="Script" uid="uid://boeifmaeewqud" path="res://addons/StandardAssets/Script/Level/LevelPortal.cs" id="2_ebj85"]
@@ -27,7 +27,10 @@
 [ext_resource type="Script" uid="uid://dham5twtjqohm" path="res://addons/StandardAssets/Script/Particle/PlayParticlesOnEntered.cs" id="22_agvoy"]
 [ext_resource type="PackedScene" uid="uid://e54icttacva1" path="res://Demo/Scene/Interactable/PF_Signpost.tscn" id="22_pitnc"]
 [ext_resource type="Texture2D" uid="uid://8loabcgabtjy" path="res://Demo/Texture/rock023_nrm_rgh.png" id="24_vl0vs"]
+[ext_resource type="Script" uid="uid://bp7r4ppgq1m0g" path="res://addons/terrain_3d/extras/particle_example/terrain_3D_particles.gd" id="25_k6sm7"]
+[ext_resource type="Material" uid="uid://el5y10hnh13g" path="res://addons/terrain_3d/extras/particle_example/process_material.tres" id="26_il25k"]
 [ext_resource type="Script" uid="uid://oj1nsgwhibi7" path="res://addons/StandardAssets/Script/Compass/PointOfInterest.cs" id="26_vl0vs"]
+[ext_resource type="Material" uid="uid://bfh7faydvuilx" path="res://Demo/Material/grass_material.tres" id="27_3s7vm"]
 [ext_resource type="Script" uid="uid://d2mpli6pyd285" path="res://addons/StandardAssets/Script/Platform/PlatformLeverHub.cs" id="27_cprpn"]
 [ext_resource type="Texture2D" uid="uid://1mquxrw3hsq8" path="res://Demo/Texture/ground037_alb_ht.png" id="27_s8ppf"]
 [ext_resource type="PackedScene" uid="uid://c8alf2ra2jals" path="res://Demo/Scene/Character/PF_Chicken_Friend.glb" id="28_17scx"]
@@ -223,6 +226,9 @@ normal_texture = ExtResource("28_ebj85")
 mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_hdsht")])
 texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_yi83g"), SubResource("Terrain3DTextureAsset_ltrur")])
 
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_hdsht"]
+section_length = 0.1
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_tfabf"]
 radius = 2.0
 
@@ -385,7 +391,7 @@ RestDuration = 4.0
 remote_path = NodePath("../../../Platform_ThereAndBack")
 
 [node name="Platform_ThereAndBack" type="AnimatableBody3D" parent="Interactable/LeverHub_On_Stone_Arch"]
-transform = Transform3D(-0.262134, -0.087173, -0.961085, 3.72519e-09, 0.995875, -0.0903356, 0.965001, -0.0236798, -0.261071, 126.046, 25.7758, 26.9547)
+transform = Transform3D(-0.262135, -0.087173, -0.961085, 3.72519e-09, 0.995875, -0.0903356, 0.965001, -0.0236798, -0.261071, 126.046, 25.7758, 26.9547)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Interactable/LeverHub_On_Stone_Arch/Platform_ThereAndBack"]
 transform = Transform3D(2, 0, 0, 0, 0.5, 0, 0, 0, 3, 0, 0, 0)
@@ -507,6 +513,18 @@ assets = SubResource("Terrain3DAssets_0g2yn")
 free_editor_textures = false
 top_level = true
 metadata/_edit_lock_ = true
+
+[node name="Grass" type="Node3D" parent="Setup/Terrain3D" node_paths=PackedStringArray("terrain")]
+script = ExtResource("25_k6sm7")
+terrain = NodePath("..")
+instance_spacing = 0.25
+rows = 128
+amount = 16384
+process_material = ExtResource("26_il25k")
+mesh = SubResource("RibbonTrailMesh_hdsht")
+mesh_material_override = ExtResource("27_3s7vm")
+min_draw_distance = 144.0
+particle_count = 1327104
 
 [node name="Ocean-n1" parent="Setup" instance=ExtResource("30_vl0vs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.10129, 0)
