@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://bjnq8sa3jo75k"
+path="res://.godot/imported/arissa_on_the_island.dialogue-ce1f0e948a938788cdc90b19b0bc49ff.tres"
+
+[deps]
+
+source_file="res://Data/Dialogue/arissa_on_the_island.dialogue"
+dest_files=["res://.godot/imported/arissa_on_the_island.dialogue-ce1f0e948a938788cdc90b19b0bc49ff.tres"]
+
+[params]
+
+defaults=true

@@ -45,7 +45,6 @@ shape = SubResource("CapsuleShape3D_uy03j")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [node name="PhantomCamera3D" type="Node3D" parent="Player/Head"]
-transform = Transform3D(1, 0, 0, 0, 0.999391, -0.0348995, 0, 0.0348995, 0.999391, 0, 0, 0)
 script = ExtResource("3_cljnr")
 priority = 3
 tween_resource = SubResource("Resource_oabsn")

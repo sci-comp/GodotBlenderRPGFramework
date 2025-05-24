@@ -7,6 +7,7 @@
 script = ExtResource("1_obuy3")
 
 [node name="Camera3D" type="Camera3D" parent="."]
+fov = 65.0
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D"]
 process_priority = 300

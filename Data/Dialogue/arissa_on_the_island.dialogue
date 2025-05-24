@@ -1,0 +1,33 @@
+~ arissa_on_the_island
+
+Arissa [#greet] [[Hello|Hi]], good morning! Doing well? Don't forget to breathe!
+
+- Good morning! I'm doing great.
+- Let's test camera angles =>< camera_angles
+
+%1 Arissa: Goodbye
+%1 Arissa: Farewell
+
+=> END
+
+# --------------------------------------------------------------------------------
+
+~ camera_angles
+
+Arissa: Alright, let's test come camera angles!
+
+- FullLeft
+	do NPC.Camera("Arissa", "FullLeft")
+- HighAngleRight
+	do NPC.Camera("Arissa", "HighAngleRight")
+- LowAngleLeft
+	do NPC.Camera("Arissa", "LowAngleLeft")
+- OverRight
+	do NPC.Camera("Arissa", "OverRight")
+
+- < End > => END
+
+=> camera_angles
+
+# --------------------------------------------------------------------------------
+
