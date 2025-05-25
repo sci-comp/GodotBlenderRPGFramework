@@ -8,6 +8,7 @@ namespace Game
     {
         /// <summary>
         /// Autoload singleton accessible at /root/NPC
+        /// This class is a stub, included here for demo purposes only.
         /// </summary>
 
         public Dictionary<string, DialogueActor> Actors { get; set; } = [];

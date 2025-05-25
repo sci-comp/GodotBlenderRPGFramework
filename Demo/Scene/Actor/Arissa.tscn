@@ -1,0 +1,116 @@
+[gd_scene load_steps=12 format=3 uid="uid://587xvnrod6f6"]
+
+[ext_resource type="Script" uid="uid://d18f27ht4mqn4" path="res://addons/StandardAssets/Script/Dialogue/DialogueActor.cs" id="1_cwaxa"]
+[ext_resource type="Resource" uid="uid://bjnq8sa3jo75k" path="res://Data/Dialogue/arissa_on_the_island.dialogue" id="2_fgk5g"]
+[ext_resource type="PackedScene" uid="uid://ddyhgxqshhveq" path="res://Demo/Scene/Character/Arissa.glb" id="3_2ey2u"]
+[ext_resource type="PackedScene" uid="uid://b7yhmtlq0pv2p" path="res://addons/StandardAssets/Scene/CameraAngles.tscn" id="4_apn65"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="5_xryjy"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="6_jto7k"]
+[ext_resource type="Script" uid="uid://oj1nsgwhibi7" path="res://addons/StandardAssets/Script/Compass/PointOfInterest.cs" id="7_d2kb7"]
+[ext_resource type="Texture2D" uid="uid://cy7w0oprhhtr5" path="res://icon.png" id="8_tvuye"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_il25k"]
+animation = &"mixamo_com"
+
+[sub_resource type="Resource" id="Resource_p4gos"]
+script = ExtResource("6_jto7k")
+duration = 1.0
+transition = 0
+ease = 2
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_xfvjt"]
+radius = 2.0
+
+[node name="Arissa" type="Area3D"]
+transform = Transform3D(0.148655, 0, -0.988889, 0, 1, 0, 0.988889, 0, 0.148655, 0, 0, 0)
+collision_layer = 32
+collision_mask = 8
+script = ExtResource("1_cwaxa")
+_Title = "Arissa"
+ActorID = "Arissa"
+StartTitle = "arissa_on_the_island"
+DialogueResource = ExtResource("2_fgk5g")
+
+[node name="Arissa" parent="." instance=ExtResource("3_2ey2u")]
+
+[node name="AnimationTree" type="AnimationTree" parent="Arissa"]
+tree_root = SubResource("AnimationNodeAnimation_il25k")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="Skeleton3D" parent="Arissa/Armature" index="0"]
+bones/0/position = Vector3(1.264e-05, 0.94236, -1.51247e-06)
+bones/0/rotation = Quaternion(0.254497, 0.00181026, -0.0445222, 0.966047)
+bones/1/rotation = Quaternion(0.142935, 0.404496, 0.899219, -0.0857757)
+bones/2/rotation = Quaternion(-0.236833, -0.0757998, 0.036478, 0.967902)
+bones/3/rotation = Quaternion(0.355757, -0.0503347, -0.0957222, 0.9283)
+bones/4/rotation = Quaternion(0.471605, 0.00363386, 0.000637642, 0.881802)
+bones/6/rotation = Quaternion(-0.25706, -0.00482057, 0.0238809, 0.966088)
+bones/7/rotation = Quaternion(-0.0356035, -0.000742831, 0.0518976, 0.998017)
+bones/8/rotation = Quaternion(-0.411759, -0.0200352, 0.0474375, 0.909837)
+bones/9/rotation = Quaternion(0.558868, 0.00458781, -0.0185068, 0.829037)
+bones/11/rotation = Quaternion(-0.185403, 0.00503638, -0.070958, 0.980084)
+bones/13/rotation = Quaternion(0.774582, 0.57415, -0.229297, 0.133404)
+bones/14/rotation = Quaternion(0.619078, 0.00380987, -0.0456928, 0.78399)
+bones/15/rotation = Quaternion(3.55907e-07, -2.26732e-07, 0.126257, 0.991998)
+bones/16/rotation = Quaternion(0.116561, -0.181353, -0.0163429, 0.976349)
+bones/17/rotation = Quaternion(0.145055, 0.121933, 0.233792, 0.953642)
+bones/18/rotation = Quaternion(-0.00157592, -0.085314, -0.249411, 0.964631)
+bones/19/rotation = Quaternion(0.00185124, -0.0898461, -0.0799749, 0.992738)
+bones/21/rotation = Quaternion(0.0459259, -0.00819168, -0.0179521, 0.99875)
+bones/22/rotation = Quaternion(0.179969, -0.00123554, -0.00675625, 0.983648)
+bones/23/rotation = Quaternion(0.0888941, -0.000330112, 0.00181979, 0.996039)
+bones/25/rotation = Quaternion(0.118169, -0.0109827, -0.046293, 0.991853)
+bones/26/rotation = Quaternion(0.289038, -0.00261881, -0.00684119, 0.95729)
+bones/27/rotation = Quaternion(0.107567, 0.00012885, -0.00238135, 0.994195)
+bones/29/rotation = Quaternion(0.213522, -0.00973075, -0.0636854, 0.974812)
+bones/30/rotation = Quaternion(0.345049, 0.00233691, -0.00278916, 0.938577)
+bones/31/rotation = Quaternion(0.168731, 0.001882, 0.00011526, 0.98566)
+bones/33/rotation = Quaternion(0.296144, -0.00513845, -0.0986865, 0.950017)
+bones/34/rotation = Quaternion(0.389021, -0.00271876, 0.00142091, 0.921224)
+bones/35/rotation = Quaternion(0.179626, -0.000203227, -0.0073367, 0.983708)
+bones/37/rotation = Quaternion(0.717353, -0.639271, 0.252095, 0.114827)
+bones/38/rotation = Quaternion(0.502853, 0.00428763, -0.0119637, 0.864278)
+bones/39/rotation = Quaternion(1.53407e-07, 4.2146e-09, -0.154165, 0.988045)
+bones/40/rotation = Quaternion(0.126338, 0.0454629, 0.0781444, 0.987859)
+bones/41/rotation = Quaternion(0.145041, -0.12189, -0.233799, 0.953648)
+bones/42/rotation = Quaternion(-0.00157656, 0.0853139, 0.249411, 0.964631)
+bones/43/rotation = Quaternion(0.00647655, 0.111105, 0.0719234, 0.991182)
+bones/45/rotation = Quaternion(0.0459202, 0.00824223, 0.0179502, 0.99875)
+bones/46/rotation = Quaternion(0.179969, 0.00123576, 0.00675772, 0.983648)
+bones/47/rotation = Quaternion(0.120078, 0.00190148, -0.0104528, 0.992708)
+bones/49/rotation = Quaternion(0.118169, 0.0110331, 0.0462882, 0.991853)
+bones/50/rotation = Quaternion(0.289038, 0.00261887, 0.00684383, 0.95729)
+bones/51/rotation = Quaternion(0.139043, 0.000131214, 0.00102205, 0.990286)
+bones/53/rotation = Quaternion(0.213522, 0.00978028, 0.0636756, 0.974812)
+bones/54/rotation = Quaternion(0.34505, -0.00233695, 0.00279198, 0.938577)
+bones/55/rotation = Quaternion(0.154032, 0.00142723, -0.0158389, 0.987938)
+bones/57/rotation = Quaternion(0.296145, 0.00518711, 0.0986737, 0.950018)
+bones/58/rotation = Quaternion(0.389021, 0.00271882, -0.00141795, 0.921224)
+bones/59/rotation = Quaternion(0.190994, 0.00658991, -0.0182816, 0.981399)
+bones/61/rotation = Quaternion(0.91535, 2.84243e-06, -2.50696e-06, -0.402658)
+bones/68/rotation = Quaternion(-0.0116055, 0.246255, 0.963733, -0.102188)
+bones/69/rotation = Quaternion(-0.0806533, 0.0464859, 0.0268123, 0.995297)
+bones/70/rotation = Quaternion(0.383415, -0.0185978, -0.0761816, 0.920241)
+bones/71/rotation = Quaternion(0.472483, -0.00306258, 0.013151, 0.881236)
+
+[node name="CameraAngles" parent="." instance=ExtResource("4_apn65")]
+transform = Transform3D(1, 0, -1.49012e-08, 0, 1, 0, 1.49012e-08, 0, 1, 0, 0, 0)
+
+[node name="PhantomCamera3D" type="Node3D" parent="."]
+transform = Transform3D(-0.70214, 0.17773, -0.689501, 0, 0.968347, 0.249607, 0.712039, 0.175259, -0.679915, -5.35927, 2.05728, -1.27355)
+script = ExtResource("5_xryjy")
+tween_resource = SubResource("Resource_p4gos")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 0.892525, 0)
+shape = SubResource("SphereShape3D_xfvjt")
+
+[node name="PointOfInterest" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 0, 0)
+script = ExtResource("7_d2kb7")
+IconTexture = ExtResource("8_tvuye")
+DisplayName = "Arissa"
+MaxDistance = 10.0
+
+[editable path="Arissa"]

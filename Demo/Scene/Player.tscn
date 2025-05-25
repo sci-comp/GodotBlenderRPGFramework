@@ -1,11 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://cc1m2a1obsyn4"]
+[gd_scene load_steps=10 format=3 uid="uid://cc1m2a1obsyn4"]
 
-[ext_resource type="Script" uid="uid://c3cigq1c6nivm" path="res://Demo/Script/character.gd" id="1_0t4e8"]
 [ext_resource type="Script" uid="uid://hdsvtpxi0o2d" path="res://Demo/Script/CharacterHub.cs" id="1_p8ic4"]
-[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="3_cljnr"]
+[ext_resource type="Script" uid="uid://coaqcn4leqqcd" path="res://Demo/Script/CharacterController.cs" id="2_m3i4r"]
 [ext_resource type="Script" uid="uid://drsrgffrpto72" path="res://addons/StandardAssets/Script/Interact/ProximityDetector.cs" id="4_5a40d"]
-[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_fx7e7"]
+[ext_resource type="PackedScene" uid="uid://b7yhmtlq0pv2p" path="res://addons/StandardAssets/Scene/CameraAngles.tscn" id="4_oabsn"]
 [ext_resource type="PackedScene" uid="uid://voiq5jjerjsw" path="res://Demo/Scene/Compass.tscn" id="6_cljnr"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uy03j"]
+radius = 0.35
+height = 1.8
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kp17n"]
 albedo_color = Color(0.909804, 0.596078, 0, 1)
@@ -14,41 +17,32 @@ clearcoat_roughness = 0.2
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_jw1de"]
 material = SubResource("StandardMaterial3D_kp17n")
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uy03j"]
-
-[sub_resource type="Resource" id="Resource_oabsn"]
-script = ExtResource("4_fx7e7")
-duration = 0.0
-transition = 0
-ease = 2
+radius = 0.35
+height = 1.8
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_e1pvd"]
 
-[node name="CharacterHub" type="Node"]
+[node name="CharacterHub" type="Node" node_paths=PackedStringArray("CameraAngles", "LookAt")]
 script = ExtResource("1_p8ic4")
+CameraAngles = NodePath("Player/CameraAngles")
+LookAt = NodePath("Player")
 
-[node name="Player" type="CharacterBody3D" parent="." node_paths=PackedStringArray("HEAD")]
+[node name="Player" type="CharacterBody3D" parent="."]
 collision_layer = 4
-script = ExtResource("1_0t4e8")
-HEAD = NodePath("Head")
+script = ExtResource("2_m3i4r")
 
-[node name="Mesh" type="MeshInstance3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-mesh = SubResource("CapsuleMesh_jw1de")
+[node name="Compass" parent="Player" instance=ExtResource("6_cljnr")]
+
+[node name="CameraAngles" parent="Player" instance=ExtResource("4_oabsn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 
 [node name="Collision" type="CollisionShape3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 shape = SubResource("CapsuleShape3D_uy03j")
 
-[node name="Head" type="Node3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
-
-[node name="PhantomCamera3D" type="Node3D" parent="Player/Head"]
-script = ExtResource("3_cljnr")
-priority = 3
-tween_resource = SubResource("Resource_oabsn")
-metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+[node name="Mesh" type="MeshInstance3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+mesh = SubResource("CapsuleMesh_jw1de")
 
 [node name="Proximity" type="Area3D" parent="Player"]
 collision_layer = 8
@@ -93,5 +87,3 @@ offset_left = 512.0
 offset_top = 480.0
 offset_right = 640.0
 offset_bottom = 507.0
-
-[node name="Compass" parent="Player" instance=ExtResource("6_cljnr")]

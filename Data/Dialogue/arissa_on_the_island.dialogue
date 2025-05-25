@@ -18,16 +18,25 @@ Arissa: Alright, let's test come camera angles!
 
 - FullLeft
 	do NPC.Camera("Arissa", "FullLeft")
+	Arissa: Your turn!
+	do PC.Camera("FullLeft")
 - HighAngleRight
 	do NPC.Camera("Arissa", "HighAngleRight")
+	Arissa: Your turn!
+	do PC.Camera("HighAngleRight")
 - LowAngleLeft
 	do NPC.Camera("Arissa", "LowAngleLeft")
+	Arissa: Your turn!
+	do PC.Camera("LowAngleLeft")
 - OverRight
 	do NPC.Camera("Arissa", "OverRight")
+	Arissa: Your turn!
+	do PC.Camera("OverRight")
 
 - < End > => END
 
 => camera_angles
+
 
 # --------------------------------------------------------------------------------
 

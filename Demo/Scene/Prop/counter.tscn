@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://brxkfam33msli"]
+
+[node name="Counter" type="Node3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
+use_collision = true
+size = Vector3(2, 0.1, 0.7)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.95, 0.4, 0)
+use_collision = true
+size = Vector3(0.8, 0.1, 0.7)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.95, 0.4, 0)
+use_collision = true
+size = Vector3(0.8, 0.1, 0.7)

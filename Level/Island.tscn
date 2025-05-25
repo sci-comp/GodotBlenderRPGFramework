@@ -1,16 +1,12 @@
-[gd_scene load_steps=76 format=3 uid="uid://y0wbbfugjd8s"]
+[gd_scene load_steps=69 format=3 uid="uid://y0wbbfugjd8s"]
 
-[ext_resource type="Script" uid="uid://d18f27ht4mqn4" path="res://addons/StandardAssets/Script/Dialogue/DialogueActor.cs" id="2_4l1pe"]
 [ext_resource type="Script" uid="uid://boeifmaeewqud" path="res://addons/StandardAssets/Script/Level/LevelPortal.cs" id="2_ebj85"]
+[ext_resource type="PackedScene" uid="uid://587xvnrod6f6" path="res://Demo/Scene/Actor/Arissa.tscn" id="2_jg6fm"]
 [ext_resource type="Material" uid="uid://4mruw3vlcdii" path="res://addons/StandardAssets/Material/Particle/MI_FX_Star_04.tres" id="3_jg6fm"]
-[ext_resource type="Resource" uid="uid://bjnq8sa3jo75k" path="res://Data/Dialogue/arissa_on_the_island.dialogue" id="3_xfvjt"]
-[ext_resource type="PackedScene" uid="uid://ddyhgxqshhveq" path="res://Demo/Scene/Character/Arissa.glb" id="4_il25k"]
 [ext_resource type="PackedScene" uid="uid://blxngopptepmp" path="res://Demo/Scene/Stone/PF_Rock_Cave.glb" id="6_5p8te"]
-[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="6_ebj85"]
 [ext_resource type="PackedScene" uid="uid://bcdixo0uw7igd" path="res://Demo/Scene/Stone/PF_Rock_Boulder.glb" id="7_5e8ve"]
-[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="7_jg6fm"]
+[ext_resource type="PackedScene" uid="uid://brxkfam33msli" path="res://Demo/Scene/Prop/counter.tscn" id="7_jg6fm"]
 [ext_resource type="PackedScene" uid="uid://dcf27axl81pxk" path="res://Demo/Scene/Stone/PF_Rock_Riser_Henge.glb" id="8_l0s28"]
-[ext_resource type="PackedScene" uid="uid://b7yhmtlq0pv2p" path="res://addons/StandardAssets/Scene/CameraAngles.tscn" id="9_il25k"]
 [ext_resource type="PackedScene" uid="uid://b8h3n1lu0cty5" path="res://Demo/Scene/Stone/PF_Rock_Riser_Slant.glb" id="9_nqqq2"]
 [ext_resource type="PackedScene" uid="uid://c5gec85a0kuek" path="res://Demo/Scene/Stone/PF_Rock_Overhang.glb" id="10_ooys7"]
 [ext_resource type="PackedScene" uid="uid://bh31t7rauktqm" path="res://Demo/Scene/Stone/PF_Rock_Rubble.glb" id="11_7ykad"]
@@ -39,22 +35,6 @@
 [ext_resource type="Texture2D" uid="uid://blyrvtbf0wu7h" path="res://Demo/Texture/rock023_alb_ht.png" id="29_jg6fm"]
 [ext_resource type="PackedScene" uid="uid://8tl1ghmq6i1w" path="res://addons/StandardAssets/Scene/Ocean.tscn" id="30_vl0vs"]
 [ext_resource type="Texture2D" uid="uid://cy7w0oprhhtr5" path="res://icon.png" id="31_s8ppf"]
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_il25k"]
-animation = &"mixamo_com"
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_xfvjt"]
-radius = 2.0
-
-[sub_resource type="Resource" id="Resource_p4gos"]
-script = ExtResource("7_jg6fm")
-duration = 1.0
-transition = 0
-ease = 2
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4l1pe"]
-radius = 0.3
-height = 1.8
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mbon0"]
 size = Vector3(400, 40, 400)
@@ -103,6 +83,9 @@ material = ExtResource("3_jg6fm")
 [sub_resource type="Skin" id="Skin_j5jd2"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ftc6w"]
+radius = 2.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3s7vm"]
 radius = 2.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_gxuhx"]
@@ -266,101 +249,8 @@ transform = Transform3D(-0.984589, 0, -0.174885, 0, 1, 0, 0.174885, 0, -0.984589
 [node name="PF_Chicken_Friend8" parent="Actor/Chicken" instance=ExtResource("28_17scx")]
 transform = Transform3D(-0.430574, 0, 0.902555, 0, 1, 0, -0.902555, 0, -0.430574, -9.28332, 14.0913, 22.7538)
 
-[node name="Arissa" type="Area3D" parent="Actor"]
-transform = Transform3D(0.148655, 0, -0.988889, 0, 1, 0, 0.988889, 0, 0.148655, 23.5656, 11.8484, -11.912)
-collision_layer = 32
-collision_mask = 8
-script = ExtResource("2_4l1pe")
-_Title = "Arissa"
-ActorID = "Arissa"
-StartTitle = "arissa_on_the_island"
-DialogueResource = ExtResource("3_xfvjt")
-
-[node name="Arissa" parent="Actor/Arissa" instance=ExtResource("4_il25k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.863426, 0)
-
-[node name="Skeleton3D" parent="Actor/Arissa/Arissa/Armature" index="0"]
-bones/0/position = Vector3(0.00225349, 0.94276, 0.00372611)
-bones/0/rotation = Quaternion(0.25632, 0.000472652, -0.0445012, 0.965567)
-bones/1/rotation = Quaternion(0.142941, 0.404892, 0.899088, -0.0852672)
-bones/2/rotation = Quaternion(-0.237473, -0.0768317, 0.036701, 0.967655)
-bones/3/rotation = Quaternion(0.357651, -0.0500181, -0.0958657, 0.927574)
-bones/4/rotation = Quaternion(0.471605, 0.00363386, 0.000637642, 0.881802)
-bones/6/rotation = Quaternion(-0.257996, -0.00501447, 0.0238376, 0.965839)
-bones/7/rotation = Quaternion(-0.0361429, -0.000824923, 0.0518227, 0.998002)
-bones/8/rotation = Quaternion(-0.412258, -0.02002, 0.047361, 0.909615)
-bones/9/rotation = Quaternion(0.558292, 0.00455349, -0.0182405, 0.829432)
-bones/11/rotation = Quaternion(-0.185771, 0.00452883, -0.0707226, 0.980034)
-bones/13/rotation = Quaternion(0.774798, 0.574037, -0.228408, 0.134165)
-bones/14/rotation = Quaternion(0.619356, 0.00153067, -0.0456332, 0.783782)
-bones/15/rotation = Quaternion(3.55907e-07, -2.26732e-07, 0.126257, 0.991998)
-bones/16/rotation = Quaternion(0.116382, -0.181063, -0.0163786, 0.976424)
-bones/17/rotation = Quaternion(0.132295, 0.12534, 0.19855, 0.962998)
-bones/18/rotation = Quaternion(-0.00270075, -0.0896418, -0.286411, 0.9539)
-bones/19/rotation = Quaternion(-0.00430158, -0.0953833, -0.117604, 0.98846)
-bones/21/rotation = Quaternion(0.0617651, -0.0084756, -0.0178201, 0.997896)
-bones/22/rotation = Quaternion(0.195552, -0.00134259, -0.00673583, 0.980669)
-bones/23/rotation = Quaternion(0.104684, -0.000359062, 0.00181441, 0.994504)
-bones/25/rotation = Quaternion(0.133897, -0.0112323, -0.0460528, 0.989861)
-bones/26/rotation = Quaternion(0.304211, -0.00275629, -0.00680758, 0.952576)
-bones/27/rotation = Quaternion(0.123325, 0.000136373, -0.00237572, 0.992364)
-bones/29/rotation = Quaternion(0.251134, -0.00956439, -0.0627694, 0.965868)
-bones/30/rotation = Quaternion(0.381346, 0.00258277, -0.00274722, 0.924425)
-bones/31/rotation = Quaternion(0.206803, 0.00224821, 0.000124399, 0.97838)
-bones/33/rotation = Quaternion(0.332823, -0.00896944, -0.0984036, 0.937798)
-bones/34/rotation = Quaternion(0.424433, -0.00296562, 0.00139618, 0.905454)
-bones/35/rotation = Quaternion(0.217618, -0.000243699, -0.00728015, 0.976007)
-bones/37/rotation = Quaternion(0.716995, -0.639917, 0.251154, 0.115526)
-bones/38/rotation = Quaternion(0.504001, 0.00392977, -0.0149824, 0.863564)
-bones/39/rotation = Quaternion(1.53407e-07, 4.2146e-09, -0.154165, 0.988045)
-bones/40/rotation = Quaternion(0.126389, 0.0450155, 0.0776763, 0.98791)
-bones/41/rotation = Quaternion(0.132288, -0.125294, -0.198572, 0.963001)
-bones/42/rotation = Quaternion(-0.00270132, 0.0896417, 0.286411, 0.953901)
-bones/43/rotation = Quaternion(-0.000531201, 0.116769, 0.109407, 0.987114)
-bones/45/rotation = Quaternion(0.0617621, 0.00852616, 0.0178169, 0.997896)
-bones/46/rotation = Quaternion(0.195552, 0.00134262, 0.00673754, 0.980669)
-bones/47/rotation = Quaternion(0.135812, 0.00206717, -0.0104213, 0.990678)
-bones/49/rotation = Quaternion(0.133896, 0.0112826, 0.0460473, 0.989861)
-bones/50/rotation = Quaternion(0.304211, 0.00275639, 0.00681029, 0.952577)
-bones/51/rotation = Quaternion(0.154736, 0.0001451, 0.0010199, 0.987955)
-bones/53/rotation = Quaternion(0.251217, 0.00961302, 0.0627564, 0.965846)
-bones/54/rotation = Quaternion(0.38133, -0.00258258, 0.00275025, 0.924431)
-bones/55/rotation = Quaternion(0.19221, 0.00166698, -0.0157133, 0.981227)
-bones/57/rotation = Quaternion(0.332743, 0.00900928, 0.0983893, 0.937828)
-bones/58/rotation = Quaternion(0.424433, 0.00296561, -0.0013931, 0.905454)
-bones/59/rotation = Quaternion(0.22888, 0.00761767, -0.0180748, 0.973257)
-bones/61/rotation = Quaternion(0.91535, 2.84243e-06, -2.50696e-06, -0.402658)
-bones/68/rotation = Quaternion(-0.0112195, 0.243474, 0.964536, -0.101317)
-bones/69/rotation = Quaternion(-0.0736256, 0.0434736, 0.0272104, 0.995966)
-bones/70/rotation = Quaternion(0.38114, -0.0183412, -0.0752479, 0.921267)
-bones/71/rotation = Quaternion(0.472483, -0.00306258, 0.013151, 0.881236)
-
-[node name="AnimationTree" type="AnimationTree" parent="Actor/Arissa/Arissa"]
-tree_root = SubResource("AnimationNodeAnimation_il25k")
-anim_player = NodePath("../AnimationPlayer")
-
-[node name="CameraAngles" parent="Actor/Arissa" instance=ExtResource("9_il25k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.869425, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Actor/Arissa"]
-shape = SubResource("SphereShape3D_xfvjt")
-
-[node name="PhantomCamera3D" type="Node3D" parent="Actor/Arissa"]
-transform = Transform3D(-0.70214, 0.17773, -0.689501, 0, 0.968347, 0.249607, 0.712039, 0.175259, -0.679915, -5.35927, 2.05728, -1.27355)
-script = ExtResource("6_ebj85")
-tween_resource = SubResource("Resource_p4gos")
-metadata/_custom_type_script = "uid://csjccrhj5wnx7"
-
-[node name="PointOfInterest" type="Marker3D" parent="Actor/Arissa"]
-script = ExtResource("26_vl0vs")
-IconTexture = ExtResource("31_s8ppf")
-DisplayName = "Arissa"
-MaxDistance = 10.0
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Actor/Arissa"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Actor/Arissa/StaticBody3D"]
-shape = SubResource("CapsuleShape3D_4l1pe")
+[node name="Arissa" parent="Actor" instance=ExtResource("2_jg6fm")]
+transform = Transform3D(0.148655, 0, -0.988889, 0, 1, 0, 0.988889, 0, 0.148655, 23.5656, 10.9696, -11.912)
 
 [node name="Egress" type="Node" parent="."]
 
@@ -400,8 +290,28 @@ script = null
 [node name="SP_From_Cave" type="Marker3D" parent="Egress" groups=["Spawnpoint"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.09793, 13.3623, 5.57644)
 
+[node name="SP_From_Club" type="Marker3D" parent="Egress" groups=["Spawnpoint"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.6905, 11.7608, -12.6289)
+
 [node name="SP_Island" type="Marker3D" parent="Egress" groups=["Spawnpoint"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5961, 11.9972, 9.46769)
+
+[node name="To_Club" type="Area3D" parent="Egress"]
+transform = Transform3D(-0.97005, -2.19735e-15, -0.242904, -1.85277e-15, 1, -1.64705e-15, 0.242904, -1.14768e-15, -0.97005, 22.6345, 12.6021, -16.0666)
+collision_layer = 32
+collision_mask = 4
+script = ExtResource("2_ebj85")
+LevelToLoad = "Club"
+Spawnpoint = "SP_From_Island"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Egress/To_Club"]
+shape = SubResource("SphereShape3D_3s7vm")
+
+[node name="Counter5" parent="Egress/To_Club" instance=ExtResource("7_jg6fm")]
+transform = Transform3D(-1, 1.66021e-07, 2.98023e-08, -8.74228e-08, -1.89906, -2.09219e-15, 5.96046e-08, -1.06581e-14, 1, 0, 0, 0)
+
+[node name="Counter6" parent="Egress/To_Club" instance=ExtResource("7_jg6fm")]
+transform = Transform3D(1, 6.33378e-15, 0, 1.58819e-22, 1.89906, -1.82353e-15, -2.98023e-08, -1.69407e-21, 1, 0, 0, 0)
 
 [node name="Interactable" type="Node" parent="."]
 
@@ -745,5 +655,3 @@ emitting = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Trigger/Goalpost_On_Tall_Henge/vfx"]
 shape = SubResource("SphereShape3D_tfabf")
-
-[editable path="Actor/Arissa/Arissa"]

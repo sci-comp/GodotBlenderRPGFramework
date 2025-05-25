@@ -4,10 +4,13 @@ using System;
 namespace Game
 {
     /// <summary>
-    /// This is a placeholder script demonstrating interaction with StandardAssets
+    /// This class is a stub, included here for demo purposes only.
     /// </summary>
     public partial class CharacterHub : Node
     {
+        [Export] public CameraAngles CameraAngles;
+        [Export] public Node3D LookAt;
+
         private CameraBridge cameraBridge;
         private ProximityDetector proximityDetector;
         private CharacterBody3D player;
@@ -23,6 +26,7 @@ namespace Game
             player = GetNode<CharacterBody3D>("Player");
 
             proximityDetector.Initialize();
+            DialogueActor.DialogueStarted += OnDialogueStarted;
 
             Spawned?.Invoke(this);
 
@@ -31,6 +35,7 @@ namespace Game
 
         public override void _ExitTree()
         {
+            DialogueActor.DialogueStarted -= OnDialogueStarted;
             Destroyed?.Invoke(this);
         }
 
@@ -44,6 +49,13 @@ namespace Game
         {
             GD.Print("[CharacterHub] Setting character rotation");
             player.Rotation = rotation;
+        }
+
+        public void OnDialogueStarted(Vector3 position, float yaw)
+        {
+            SetCharacterPosition(position);
+            SetCharacterRotation(new(0, yaw, 0));
+            cameraBridge.Blink();
         }
 
     }

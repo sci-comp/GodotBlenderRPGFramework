@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://8ahsi5obxolq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6j0hv"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 5.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eo2b0"]
+metallic = 1.0
+roughness = 0.2
+
+[node name="TinyLight" type="Node3D"]
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0157363, 0)
+radius = 0.02
+height = 0.0188477
+material = SubResource("StandardMaterial3D_6j0hv")
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00811908, 0)
+radius = 0.04
+height = 0.015918
+material = SubResource("StandardMaterial3D_eo2b0")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0250499, 0)

@@ -9,6 +9,7 @@ AllowMenu = true
 FadeLevelTitleInOut = false
 HasEpigraph = false
 PlayerExistsInLevel = true
+AmbientVFX = ""
 Environment = "wind"
 LevelName = "Cave"
 LevelID = "Cave"

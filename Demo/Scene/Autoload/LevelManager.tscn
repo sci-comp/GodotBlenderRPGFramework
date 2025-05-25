@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cc3kgpdoricri"]
+[gd_scene load_steps=10 format=3 uid="uid://cc3kgpdoricri"]
 
 [ext_resource type="Script" uid="uid://b54l6k12r37px" path="res://addons/StandardAssets/Script/Level/LevelManager.cs" id="1_1rch1"]
 [ext_resource type="Shader" uid="uid://dkl8fcovrv8tm" path="res://addons/StandardAssets/Shader/dissolve_2d.gdshader" id="3_4lg3s"]
@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://bkg83ic34tg65" path="res://Data/Level/Island.tres" id="4_5b6l1"]
 [ext_resource type="Resource" uid="uid://cw24f8685okx2" path="res://Data/Level/Epigraph.tres" id="4_foolj"]
 [ext_resource type="Animation" uid="uid://dxr1r78uxitcq" path="res://addons/StandardAssets/Shader/dissolve_2d.tres" id="4_hjws5"]
+[ext_resource type="Resource" uid="uid://dry576ie04wxc" path="res://Data/Level/Club.tres" id="5_hgu0g"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5mrsu"]
 shader = ExtResource("3_4lg3s")
@@ -23,6 +24,7 @@ _data = {
 script = ExtResource("1_1rch1")
 LevelInfo = {
 &"Cave": ExtResource("3_hgu0g"),
+&"Club": ExtResource("5_hgu0g"),
 &"Epigraph": ExtResource("4_foolj"),
 &"Island": ExtResource("4_5b6l1")
 }

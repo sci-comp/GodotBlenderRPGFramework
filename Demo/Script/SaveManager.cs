@@ -1,11 +1,12 @@
 using Game;
 using Godot;
-using System;
 
+/// <summary>
+/// Autoload singleton accessible at /root/SaveManager
+/// This class is a stub, included here for demo purposes only.
+/// </summary>
 public partial class SaveManager : Node
 {
-    // Todo: This is a placeholder. A save manager has not yet been added to this project.
-
     public string SpawnpointName = "SP_Island";
     public string CurrentLevel = "Island";
 

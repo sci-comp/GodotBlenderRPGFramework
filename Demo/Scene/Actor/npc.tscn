@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcry1jr17pov6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nhy3c"]
+size = Vector3(0.6, 1.8, 0.4)
+
+[node name="NPC" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.899502, 0)
+shape = SubResource("BoxShape3D_nhy3c")
+
+[node name="CharacterMesh" type="Node3D" parent="."]
+
+[node name="Body" type="CSGPolygon3D" parent="CharacterMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.2)
+polygon = PackedVector2Array(-0.3, 0, -0.3, 1.3, 0, 1.4, 0.3, 1.3, 0.3, 0)
+depth = 0.4
+
+[node name="Head" type="CSGPolygon3D" parent="CharacterMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 0.2)
+polygon = PackedVector2Array(0, 0, -0.2, 0.2, 0.000233278, 0.400392, 0.2, 0.2)
+depth = 0.4

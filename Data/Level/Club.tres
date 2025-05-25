@@ -1,0 +1,17 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://dry576ie04wxc"]
+
+[ext_resource type="PackedScene" uid="uid://b6ptyi2ppebtg" path="res://Level/Club.tscn" id="1_yo5ix"]
+[ext_resource type="Script" uid="uid://c56kgadb3fuil" path="res://addons/StandardAssets/Script/Level/LevelInfo.cs" id="2_fm6i8"]
+
+[resource]
+script = ExtResource("2_fm6i8")
+AllowMenu = true
+FadeLevelTitleInOut = false
+HasEpigraph = false
+PlayerExistsInLevel = true
+AmbientVFX = ""
+Environment = "wind"
+LevelName = "Club"
+LevelID = "Club"
+Level = ExtResource("1_yo5ix")
+Epigraph = ""
