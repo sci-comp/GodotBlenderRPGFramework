@@ -13,8 +13,12 @@ namespace Game
 
         public Dictionary<string, DialogueActor> Actors { get; set; } = [];
 
+        private CameraBridge cameraBridge;
+
         public override void _Ready()
         {
+            cameraBridge = GetNode<CameraBridge>("/root/CameraBridge");
+
             DialogueActor.ActorSpawned += RegisterActor;
             DialogueActor.ActorDestroyed += UnregisterActor;
         }
@@ -74,7 +78,7 @@ namespace Game
 
             if (Enum.TryParse(angleName, out CameraAngle angle))
             {
-                actor.SetCameraAngle(angle);
+                cameraBridge.SetActiveCamera(actor.CameraAngles, angle);
             }
             else
             {

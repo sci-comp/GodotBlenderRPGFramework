@@ -1,10 +1,18 @@
-[gd_scene load_steps=10 format=3 uid="uid://cc1m2a1obsyn4"]
+[gd_scene load_steps=13 format=3 uid="uid://cc1m2a1obsyn4"]
 
 [ext_resource type="Script" uid="uid://hdsvtpxi0o2d" path="res://Demo/Script/CharacterHub.cs" id="1_p8ic4"]
 [ext_resource type="Script" uid="uid://coaqcn4leqqcd" path="res://Demo/Script/CharacterController.cs" id="2_m3i4r"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="3_cljnr"]
 [ext_resource type="Script" uid="uid://drsrgffrpto72" path="res://addons/StandardAssets/Script/Interact/ProximityDetector.cs" id="4_5a40d"]
-[ext_resource type="PackedScene" uid="uid://b7yhmtlq0pv2p" path="res://addons/StandardAssets/Scene/CameraAngles.tscn" id="4_oabsn"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_fx7e7"]
+[ext_resource type="Script" uid="uid://cv6lmtmyabh3g" path="res://addons/StandardAssets/Script/Dialogue/CameraAngles.cs" id="4_oabsn"]
 [ext_resource type="PackedScene" uid="uid://voiq5jjerjsw" path="res://Demo/Scene/Compass.tscn" id="6_cljnr"]
+
+[sub_resource type="Resource" id="Resource_ujvtr"]
+script = ExtResource("4_fx7e7")
+duration = 1.0
+transition = 0
+ease = 2
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uy03j"]
 radius = 0.35
@@ -33,8 +41,148 @@ script = ExtResource("2_m3i4r")
 
 [node name="Compass" parent="Player" instance=ExtResource("6_cljnr")]
 
-[node name="CameraAngles" parent="Player" instance=ExtResource("4_oabsn")]
+[node name="CameraAngles" type="Node3D" parent="Player" node_paths=PackedStringArray("Angles")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+script = ExtResource("4_oabsn")
+Angles = [NodePath("Bird"), NodePath("Closeup"), NodePath("CloseupLeft"), NodePath("CloseupRight"), NodePath("ExtremeCloseup"), NodePath("Full"), NodePath("FullLeft"), NodePath("FullRight"), NodePath("HighAngle"), NodePath("HighAngleLeft"), NodePath("HighAngleRight"), NodePath("LowAngle"), NodePath("LowAngleLeft"), NodePath("LowAngleRight"), NodePath("Medium"), NodePath("MediumLeft"), NodePath("MediumRight"), NodePath("OverLeft"), NodePath("OverRight"), NodePath("ProfileLeft"), NodePath("ProfileRight"), NodePath("Reverse"), NodePath("Worm")]
+
+[node name="Bird" type="Node3D" parent="Player/CameraAngles"]
+transform = Transform3D(0.999229, -0.0389419, 0.00498559, 0, 0.12699, 0.991904, -0.0392597, -0.991139, 0.126892, 0.105403, 4.44961, 0.424238)
+script = ExtResource("3_cljnr")
+tween_resource = SubResource("Resource_ujvtr")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="Closeup" type="Node3D" parent="Player/CameraAngles"]
+transform = Transform3D(0.999048, -0.00925506, 0.0426262, 0, 0.977231, 0.212178, -0.0436194, -0.211976, 0.976301, 0.110295, 1.69161, 0.822549)
+script = ExtResource("3_cljnr")
+tween_resource = SubResource("Resource_ujvtr")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="CloseupLeft" type="Node3D" parent="Player/CameraAngles"]
+transform = Transform3D(0.904455, -0.138877, 0.403329, 0, 0.945519, 0.325568, -0.426569, -0.294461, 0.855179, 0.443088, 1.71075, 0.748857)
+script = ExtResource("3_cljnr")
+tween_resource = SubResource("Resource_ujvtr")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="CloseupRight" type="Node3D" parent="Player/CameraAngles"]
+transform = Transform3D(0.941176, 0.0630293, -0.331986, 0, 0.982451, 0.186523, 0.337916, -0.175551, 0.924659, -0.171289, 1.64522, 0.790754)
+script = ExtResource("3_cljnr")
+tween_resource = SubResource("Resource_ujvtr")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="ExtremeCloseup" type="Node3D" parent="Player/CameraAngles"]
+transform = Transform3D(0.945519, 0.0354436, -0.323633, 0, 0.994056, 0.108867, 0.325568, -0.102936, 0.939899, -0.0351064, 1.62533, 0.400041)
+script = ExtResource("3_cljnr")
+tween_resource = SubResource("Resource_ujvtr")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="Full" type="Node3D" parent="Player/CameraAngles"]
+transform = Transform3D(0.999657, -0.00798383, 0.0249415, 0, 0.952395, 0.304864, -0.0261882, -0.30476, 0.952069, -0.0190304, 1.64172, 1.98302)
+script = ExtResource("3_cljnr")
+tween_resource = SubResource("Resource_ujvtr")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="FullLeft" type="Node3D" parent="Player/CameraAngles"]
+transform = Transform3D(0.850346, -0.169149, 0.498297, 0, 0.94693, 0.321439, -0.526224, -0.273335, 0.805219, 1.01529, 1.70726, 1.90725)
+script = ExtResource("3_cljnr")
+tween_resource = SubResource("Resource_ujvtr")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="FullRight" type="Node3D" parent="Player/CameraAngles"]
+transform = Transform3D(0.933584, 0.0897255, -0.346943, 0, 0.968148, 0.25038, 0.358358, -0.233751, 0.903848, -0.932211, 1.65965, 1.90829)
+script = ExtResource("3_cljnr")
+tween_resource = SubResource("Resource_ujvtr")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="HighAngle" type="Node3D" parent="Player/CameraAngles"]
+transform = Transform3D(0.999914, 0.00863049, -0.0098412, 0, 0.75184, 0.659346, 0.0130895, -0.659289, 0.751776, -0.00277811, 2.24445, 1.14192)
+script = ExtResource("3_cljnr")
+tween_resource = SubResource("Resource_ujvtr")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="HighAngleLeft" type="Node3D" parent="Player/CameraAngles"]
+transform = Transform3D(0.838672, -0.304556, 0.451524, 0, 0.829038, 0.559192, -0.544636, -0.468979, 0.695291, 0.755943, 2.24216, 1.01027)
+script = ExtResource("3_cljnr")
+tween_resource = SubResource("Resource_ujvtr")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="HighAngleRight" type="Node3D" parent="Player/CameraAngles"]
+transform = Transform3D(0.824124, 0.346765, -0.447854, 0, 0.79069, 0.612217, 0.566409, -0.504543, 0.651627, -0.611241, 2.26819, 1.04723)
+script = ExtResource("3_cljnr")
+tween_resource = SubResource("Resource_ujvtr")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="LowAngle" type="Node3D" parent="Player/CameraAngles"]
+transform = Transform3D(0.99863, -0.0108813, -0.0511922, 0, 0.978147, -0.207912, 0.0523358, 0.207627, 0.976807, -0.00812138, 1.19232, 1.32412)
+script = ExtResource("3_cljnr")
+tween_resource = SubResource("Resource_ujvtr")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="LowAngleLeft" type="Node3D" parent="Player/CameraAngles"]
+transform = Transform3D(0.956306, 0.0607871, 0.28598, 0, 0.978147, -0.207912, -0.292369, 0.198828, 0.935408, 0.541231, 1.21696, 1.24633)
+script = ExtResource("3_cljnr")
+tween_resource = SubResource("Resource_ujvtr")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="LowAngleRight" type="Node3D" parent="Player/CameraAngles"]
+transform = Transform3D(0.91879, -0.0736299, -0.387819, 0, 0.98245, -0.186525, 0.394747, 0.171377, 0.902665, -0.32346, 1.29514, 1.28404)
+script = ExtResource("3_cljnr")
+tween_resource = SubResource("Resource_ujvtr")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="Medium" type="Node3D" parent="Player/CameraAngles"]
+transform = Transform3D(0.999391, 0.00545949, -0.0344699, 0, 0.987688, 0.156434, 0.0348995, -0.156339, 0.987087, -0.00653414, 1.60857, 1.19543)
+script = ExtResource("3_cljnr")
+tween_resource = SubResource("Resource_ujvtr")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="MediumLeft" type="Node3D" parent="Player/CameraAngles"]
+transform = Transform3D(0.913545, -0.0949506, 0.395499, 0, 0.97237, 0.233445, -0.406737, -0.213262, 0.888304, 0.616295, 1.65298, 1.11321)
+script = ExtResource("3_cljnr")
+tween_resource = SubResource("Resource_ujvtr")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="MediumRight" type="Node3D" parent="Player/CameraAngles"]
+transform = Transform3D(0.854912, 0.0945385, -0.510086, 0, 0.983255, 0.182235, 0.518773, -0.155795, 0.840597, -0.453073, 1.67146, 1.02901)
+script = ExtResource("3_cljnr")
+tween_resource = SubResource("Resource_ujvtr")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="OverLeft" type="Node3D" parent="Player/CameraAngles"]
+transform = Transform3D(-0.992546, -0.0299985, 0.118119, 0, 0.969231, 0.246153, -0.121869, 0.244319, -0.962006, 0.397015, 1.74724, -0.40722)
+script = ExtResource("3_cljnr")
+tween_resource = SubResource("Resource_ujvtr")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="OverRight" type="Node3D" parent="Player/CameraAngles"]
+transform = Transform3D(-0.996195, 0.019235, -0.0850063, 0, 0.975342, 0.220697, 0.0871553, 0.219858, -0.971631, -0.299444, 1.71278, -0.526666)
+script = ExtResource("3_cljnr")
+tween_resource = SubResource("Resource_ujvtr")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="ProfileLeft" type="Node3D" parent="Player/CameraAngles"]
+transform = Transform3D(0.199368, 0.10243, 0.974557, 0, 0.994522, -0.104528, -0.979925, 0.0208396, 0.198276, 0.60557, 1.56337, 0.0936463)
+script = ExtResource("3_cljnr")
+tween_resource = SubResource("Resource_ujvtr")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="ProfileRight" type="Node3D" parent="Player/CameraAngles"]
+transform = Transform3D(0.0130897, 0.139161, -0.990183, 0, 0.990268, 0.139173, 0.999914, -0.00182174, 0.0129623, -0.609268, 1.61587, 0.0738779)
+script = ExtResource("3_cljnr")
+tween_resource = SubResource("Resource_ujvtr")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="Reverse" type="Node3D" parent="Player/CameraAngles"]
+transform = Transform3D(-0.999914, -0.00360892, 0.0125858, 0, 0.961262, 0.275637, -0.013093, 0.275613, -0.961179, 0.0484348, 2.00521, -0.655522)
+script = ExtResource("3_cljnr")
+tween_resource = SubResource("Resource_ujvtr")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="Worm" type="Node3D" parent="Player/CameraAngles"]
+transform = Transform3D(0.992005, 0.06262, 0.109562, 0, 0.868199, -0.496217, -0.126195, 0.49225, 0.861258, 0.228058, 0.429004, 1.25106)
+script = ExtResource("3_cljnr")
+tween_resource = SubResource("Resource_ujvtr")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="Collision" type="CollisionShape3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)

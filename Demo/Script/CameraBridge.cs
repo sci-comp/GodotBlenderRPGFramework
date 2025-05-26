@@ -133,9 +133,11 @@ namespace Game
         {
             if (currentActiveCameraAngles != null && currentActiveCameraAngles != cameraAngles)
             {
+                GD.Print($"[CameraBridge] Resetting previous camera: {currentActiveCameraAngles.Name} angle {currentActiveAngle}");
                 currentActiveCameraAngles.SetCameraPriority(currentActiveAngle, 0);
             }
 
+            GD.Print($"[CameraBridge] Setting new camera: {cameraAngles.Name} angle {angle}");
             cameraAngles.SetCameraPriority(angle);
             currentActiveCameraAngles = cameraAngles;
             currentActiveAngle = angle;
@@ -143,6 +145,8 @@ namespace Game
 
         public void ResetActiveCamera()
         {
+            GD.Print($"[CameraBridge] ResetActiveCamera - currentActiveCameraAngles: {currentActiveCameraAngles}, currentActiveAngle: {currentActiveAngle}");
+
             if (currentActiveCameraAngles != null)
             {
                 currentActiveCameraAngles.SetCameraPriority(currentActiveAngle, 0);
@@ -152,6 +156,7 @@ namespace Game
 
         protected void OnDialogueEnded(Resource dialogueResource)
         {
+            GD.Print($"[CameraBridge] OnDialogueEnded - resetting camera: {currentActiveCameraAngles?.Name}");
             ResetActiveCamera();
         }
 
