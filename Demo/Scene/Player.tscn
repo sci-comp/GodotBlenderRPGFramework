@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cc1m2a1obsyn4"]
+[gd_scene load_steps=14 format=3 uid="uid://cc1m2a1obsyn4"]
 
 [ext_resource type="Script" uid="uid://hdsvtpxi0o2d" path="res://Demo/Script/CharacterHub.cs" id="1_p8ic4"]
 [ext_resource type="Script" uid="uid://coaqcn4leqqcd" path="res://Demo/Script/CharacterController.cs" id="2_m3i4r"]
@@ -15,7 +15,7 @@ transition = 0
 ease = 2
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uy03j"]
-radius = 0.35
+radius = 0.25
 height = 1.8
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kp17n"]
@@ -25,10 +25,12 @@ clearcoat_roughness = 0.2
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_jw1de"]
 material = SubResource("StandardMaterial3D_kp17n")
-radius = 0.35
+radius = 0.2
 height = 1.8
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_e1pvd"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_fx7e7"]
 
 [node name="CharacterHub" type="Node" node_paths=PackedStringArray("CameraAngles", "LookAt")]
 script = ExtResource("1_p8ic4")
@@ -42,7 +44,7 @@ script = ExtResource("2_m3i4r")
 [node name="Compass" parent="Player" instance=ExtResource("6_cljnr")]
 
 [node name="CameraAngles" type="Node3D" parent="Player" node_paths=PackedStringArray("Angles")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 script = ExtResource("4_oabsn")
 Angles = [NodePath("Bird"), NodePath("Closeup"), NodePath("CloseupLeft"), NodePath("CloseupRight"), NodePath("ExtremeCloseup"), NodePath("Full"), NodePath("FullLeft"), NodePath("FullRight"), NodePath("HighAngle"), NodePath("HighAngleLeft"), NodePath("HighAngleRight"), NodePath("LowAngle"), NodePath("LowAngleLeft"), NodePath("LowAngleRight"), NodePath("Medium"), NodePath("MediumLeft"), NodePath("MediumRight"), NodePath("OverLeft"), NodePath("OverRight"), NodePath("ProfileLeft"), NodePath("ProfileRight"), NodePath("Reverse"), NodePath("Worm")]
 
@@ -235,3 +237,7 @@ offset_left = 512.0
 offset_top = 480.0
 offset_right = 640.0
 offset_bottom = 507.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
+transform = Transform3D(0.248288, 0, 0, 0, 0.0248288, 0, 0, 0, 0.347603, 0, 1.66485, -0.114659)
+mesh = SubResource("BoxMesh_fx7e7")

@@ -492,14 +492,13 @@ metadata/_edit_lock_ = true
 [node name="Grass" type="Node3D" parent="Setup/Terrain3D" node_paths=PackedStringArray("terrain")]
 script = ExtResource("25_k6sm7")
 terrain = NodePath("..")
-instance_spacing = 0.25
-rows = 128
-amount = 16384
+rows = 64
+amount = 4096
 process_material = ExtResource("26_il25k")
 mesh = SubResource("RibbonTrailMesh_hdsht")
 mesh_material_override = ExtResource("27_3s7vm")
 min_draw_distance = 144.0
-particle_count = 1327104
+particle_count = 331776
 
 [node name="Ocean-n1" parent="Setup" instance=ExtResource("30_vl0vs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.10129, 0)

@@ -9,6 +9,7 @@ namespace Game
     /// </summary>
     public partial class PC : Node
     {
+        [Export] new public string Name = "Albert";
         private CharacterHub charHub;
         private NPC npc;
         private RandomNumberGenerator rng = new();

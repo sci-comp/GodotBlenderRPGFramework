@@ -1,11 +1,15 @@
 ~ start
 
-Manager: Oh thank God you're here!
+do NPC.Camera("Rupert", "Closeup")
+Rupert: Hello there, how can I be of help this evening? [ID:HELLO_THERE_HOW_CAN_I_BE_OF_HE_AF7437]
 
-Manager: What seems to be the problem?
+do PC.Camera("Closeup")
+- Nothing thanks, just passing through. [ID:NOTHING_THANKS_JUST_PASSING_T_25FFAC]
+- I'd like to have a few more hours in the day, please? [ID:I_D_LIKE_TO_HAVE_A_FEW_MORE_H_E2394A]
+	do NPC.Camera("Rupert", "Closeup")
+	Rupert: Ah.. I don't think I can help with that one. [ID:AH_I_DON_T_THINK_I_CAN_HELP_WI_A0D664]
 
-Manager: Someone stole our money!
-
-Manager: *Gasp*
+do NPC.Camera("Rupert", "Closeup")
+Rupert: You take care now. [ID:YOU_TAKE_CARE_NOW_1F0575]
 
 => END

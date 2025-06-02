@@ -60,7 +60,7 @@ namespace Game
                 Velocity = new Vector3(direction.X * speed, Velocity.Y, direction.Z * speed);
 
                 float targetAngle = Mathf.Atan2(direction.X, direction.Z);
-                Rotation = new Vector3(Rotation.X, targetAngle, Rotation.Z);
+                Rotation = new Vector3(Rotation.X, targetAngle, -Rotation.Z);
             }
             else
             {

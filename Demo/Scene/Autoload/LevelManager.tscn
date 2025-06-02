@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://cc3kgpdoricri"]
+[gd_scene load_steps=11 format=3 uid="uid://cc3kgpdoricri"]
 
 [ext_resource type="Script" uid="uid://b54l6k12r37px" path="res://addons/StandardAssets/Script/Level/LevelManager.cs" id="1_1rch1"]
+[ext_resource type="Script" uid="uid://c56kgadb3fuil" path="res://addons/StandardAssets/Script/Level/LevelInfo.cs" id="2_5b6l1"]
 [ext_resource type="Shader" uid="uid://dkl8fcovrv8tm" path="res://addons/StandardAssets/Shader/dissolve_2d.gdshader" id="3_4lg3s"]
 [ext_resource type="Resource" uid="uid://dmun2byjeapoi" path="res://Data/Level/Cave.tres" id="3_hgu0g"]
 [ext_resource type="Resource" uid="uid://bkg83ic34tg65" path="res://Data/Level/Island.tres" id="4_5b6l1"]
@@ -22,12 +23,12 @@ _data = {
 
 [node name="LevelManager" type="Node2D"]
 script = ExtResource("1_1rch1")
-LevelInfo = {
+LevelInfo = Dictionary[StringName, ExtResource("2_5b6l1")]({
 &"Cave": ExtResource("3_hgu0g"),
 &"Club": ExtResource("5_hgu0g"),
 &"Epigraph": ExtResource("4_foolj"),
 &"Island": ExtResource("4_5b6l1")
-}
+})
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 3
