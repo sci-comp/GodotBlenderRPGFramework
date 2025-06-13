@@ -1,6 +1,47 @@
-[gd_scene load_steps=2 format=3 uid="uid://c5tbjnvppf5lt"]
+[gd_scene load_steps=11 format=3 uid="uid://c5tbjnvppf5lt"]
 
 [ext_resource type="Script" uid="uid://do3obsdo6xjpo" path="res://addons/StandardAssets/Script/Audio/SFX.cs" id="1_nyur7"]
+[ext_resource type="Script" uid="uid://d1jbqgge5bxn1" path="res://addons/StandardAssets/Script/Audio/SoundGroup3D.cs" id="2_urscx"]
+[ext_resource type="AudioStream" uid="uid://dmm7km4ok3xmi" path="res://Demo/Audio/SFX/bubbles/bubbles_01.wav" id="3_xk762"]
+[ext_resource type="AudioStream" uid="uid://dsx81prt0ll38" path="res://Demo/Audio/SFX/bubbles/bubbles_02.wav" id="4_2a5u1"]
+[ext_resource type="AudioStream" uid="uid://xx8aiknqj0fc" path="res://Demo/Audio/SFX/bubbles/bubbles_03.wav" id="5_bq60s"]
+[ext_resource type="AudioStream" uid="uid://bro14wr3jxx6p" path="res://Demo/Audio/SFX/bubbles/bubbles_04.wav" id="6_hpo7f"]
+[ext_resource type="AudioStream" uid="uid://8mqlrw0xc84m" path="res://Demo/Audio/SFX/bubbles/bubbles_05.wav" id="7_ge528"]
+[ext_resource type="AudioStream" uid="uid://ce8bq3bohd0w3" path="res://Demo/Audio/SFX/velcro/velcro_01.wav" id="8_fjdtm"]
+[ext_resource type="AudioStream" uid="uid://dnhonka6b6heu" path="res://Demo/Audio/SFX/velcro/velcro_02.wav" id="9_n25w0"]
+[ext_resource type="AudioStream" uid="uid://yh7p4wbpondj" path="res://Demo/Audio/SFX/velcro/velcro_03.wav" id="10_58ob0"]
 
 [node name="SFX" type="Node"]
 script = ExtResource("1_nyur7")
+
+[node name="Effect" type="Node" parent="."]
+
+[node name="bubbles" type="Node" parent="Effect"]
+script = ExtResource("2_urscx")
+
+[node name="bubbles_01" type="AudioStreamPlayer3D" parent="Effect/bubbles"]
+stream = ExtResource("3_xk762")
+
+[node name="bubbles_02" type="AudioStreamPlayer3D" parent="Effect/bubbles"]
+stream = ExtResource("4_2a5u1")
+
+[node name="bubbles_03" type="AudioStreamPlayer3D" parent="Effect/bubbles"]
+stream = ExtResource("5_bq60s")
+
+[node name="bubbles_04" type="AudioStreamPlayer3D" parent="Effect/bubbles"]
+stream = ExtResource("6_hpo7f")
+
+[node name="bubbles_05" type="AudioStreamPlayer3D" parent="Effect/bubbles"]
+stream = ExtResource("7_ge528")
+
+[node name="velcro" type="Node" parent="Effect"]
+script = ExtResource("2_urscx")
+
+[node name="velcro_01" type="AudioStreamPlayer3D" parent="Effect/velcro"]
+stream = ExtResource("8_fjdtm")
+
+[node name="velcro_02" type="AudioStreamPlayer3D" parent="Effect/velcro"]
+stream = ExtResource("9_n25w0")
+
+[node name="velcro_03" type="AudioStreamPlayer3D" parent="Effect/velcro"]
+stream = ExtResource("10_58ob0")

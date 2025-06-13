@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://ce8bq3bohd0w3"
-path="res://.godot/imported/velcro_01.wav-0f634c27d5f695a2894b0c3e8d9ffe54.sample"
+path="res://.godot/imported/velcro_01.wav-9e7298cd4b4304308226be6d798eeda8.sample"
 
 [deps]
 
-source_file="res://Demo/Audio/velcro/velcro_01.wav"
-dest_files=["res://.godot/imported/velcro_01.wav-0f634c27d5f695a2894b0c3e8d9ffe54.sample"]
+source_file="res://Demo/Audio/SFX/velcro/velcro_01.wav"
+dest_files=["res://.godot/imported/velcro_01.wav-9e7298cd4b4304308226be6d798eeda8.sample"]
 
 [params]
 

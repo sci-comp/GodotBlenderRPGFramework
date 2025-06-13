@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://b6ptyi2ppebtg"]
+[gd_scene load_steps=31 format=3 uid="uid://b6ptyi2ppebtg"]
 
 [ext_resource type="PackedScene" uid="uid://brxkfam33msli" path="res://Demo/Scene/Prop/counter.tscn" id="1_vjgbc"]
 [ext_resource type="PackedScene" uid="uid://go7yxh0hi4jc" path="res://Demo/Scene/Prop/sofa.tscn" id="2_w0m5x"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://d18f27ht4mqn4" path="res://addons/StandardAssets/Script/Dialogue/DialogueActor.cs" id="5_optbx"]
 [ext_resource type="Script" uid="uid://oj1nsgwhibi7" path="res://addons/StandardAssets/Script/Compass/PointOfInterest.cs" id="6_7iwxl"]
 [ext_resource type="Texture2D" uid="uid://cy7w0oprhhtr5" path="res://icon.png" id="7_3orid"]
+[ext_resource type="Script" uid="uid://05dqolsno4nw" path="res://addons/StandardAssets/Script/Audio/PlaySound.cs" id="11_3orid"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_04gbw"]
 albedo_color = Color(1, 0.64, 0.64, 1)
@@ -73,9 +74,11 @@ albedo_color = Color(0.427493, 0.427493, 0.427493, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4qbfl"]
 albedo_color = Color(0.314316, 0.314316, 0.314316, 1)
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_3orid"]
+
 [node name="Club" type="Node3D"]
 
-[node name="Actor" type="Node" parent="."]
+[node name="Actor" type="Node3D" parent="."]
 
 [node name="Assistant" parent="Actor" instance=ExtResource("3_swy2a")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4, 0, 5.9)
@@ -105,7 +108,7 @@ material = SubResource("StandardMaterial3D_swy2a")
 material = SubResource("StandardMaterial3D_t1xqo")
 
 [node name="Manager" type="Area3D" parent="Actor"]
-transform = Transform3D(0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, 0.984808, -1.08123, 0, 0.575936)
+transform = Transform3D(0.775496, 0, -0.631353, 0, 1, 0, 0.631353, 0, 0.775496, 1.69121, 0, -2.57284)
 collision_layer = 32
 collision_mask = 8
 script = ExtResource("5_optbx")
@@ -127,7 +130,7 @@ script = ExtResource("6_7iwxl")
 IconTexture = ExtResource("7_3orid")
 DisplayName = "Manager"
 
-[node name="Egress" type="Node" parent="."]
+[node name="Egress" type="Node3D" parent="."]
 
 [node name="To_Island" type="Area3D" parent="Egress"]
 transform = Transform3D(-0.965926, -1.26828e-15, 0.258819, -1.77636e-15, 1, -1.72918e-15, -0.258819, -2.13002e-15, -0.965926, -1.83863, 1.607, 21.522)
@@ -152,7 +155,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.879231, 0.52087, 17.4554)
 [node name="SP_Club" type="Marker3D" parent="Egress" groups=["Spawnpoint"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.879231, 0.52087, 17.4554)
 
-[node name="Lights" type="Node" parent="."]
+[node name="Lights" type="Node3D" parent="."]
 
 [node name="TinyLight" parent="Lights" instance=ExtResource("4_a0hih")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 5)
@@ -229,7 +232,7 @@ transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 4.7, 3
 [node name="TinyLight24" parent="Lights" instance=ExtResource("4_a0hih")]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 4.7, 3.3, -6)
 
-[node name="Settings" type="Node" parent="."]
+[node name="Settings" type="Node3D" parent="."]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Settings"]
 environment = SubResource("Environment_uqsom")
@@ -239,7 +242,7 @@ transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -
 light_energy = 0.1
 shadow_enabled = true
 
-[node name="Static" type="Node" parent="."]
+[node name="Static" type="Node3D" parent="."]
 
 [node name="Furniture" type="Node3D" parent="Static"]
 
@@ -282,6 +285,12 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3, 0,
 
 [node name="Counter2" parent="Static/Furniture" instance=ExtResource("1_vjgbc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6, 0, 5)
+
+[node name="Counter5" parent="Static/Furniture" instance=ExtResource("1_vjgbc")]
+transform = Transform3D(-0.00657987, 0, 0.999978, 0, 1, 0, -0.999978, 0, -0.00657987, -4.60999, -0.51992, -1.80577)
+
+[node name="Counter6" parent="Static/Furniture" instance=ExtResource("1_vjgbc")]
+transform = Transform3D(-0.00657987, 0, 0.999978, 0, 1, 0, -0.999978, 0, -0.00657987, -4.57954, -0.51992, 0.830173)
 
 [node name="Counter3" parent="Static/Furniture" instance=ExtResource("1_vjgbc")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -3.5, 3.5, 5.3)
@@ -416,6 +425,40 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.85,
 use_collision = true
 size = Vector3(14.4, 4, 0.3)
 material = SubResource("StandardMaterial3D_4qbfl")
+
+[node name="Label3D" type="Label3D" parent="Static"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.576, 1.27054, -1.7856)
+text = "bubbles"
+
+[node name="Label3D2" type="Label3D" parent="Static"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.576, 1.27054, 0.837529)
+text = "velcro"
+
+[node name="SFX_Tests" type="Node3D" parent="."]
+
+[node name="velcro" type="Area3D" parent="SFX_Tests"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.576, 0.624632, 0.879042)
+collision_layer = 32
+collision_mask = 8
+script = ExtResource("11_3orid")
+SoundName = "velcro"
+_Title = "Velcro"
+_Details = "Interact to play sound"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SFX_Tests/velcro"]
+shape = SubResource("SphereShape3D_3orid")
+
+[node name="bubbles" type="Area3D" parent="SFX_Tests"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.576, 0.624632, -1.7856)
+collision_layer = 32
+collision_mask = 8
+script = ExtResource("11_3orid")
+SoundName = "bubbles"
+_Title = "Bubbles"
+_Details = "Interact to play sound"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SFX_Tests/bubbles"]
+shape = SubResource("SphereShape3D_3orid")
 
 [editable path="Actor/Assistant"]
 [editable path="Actor/Bartender"]

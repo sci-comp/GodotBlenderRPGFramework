@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dsx81prt0ll38"
-path="res://.godot/imported/bubbles_02.wav-80926049df08bdf6ffacedfbaaf140a2.sample"
+path="res://.godot/imported/bubbles_02.wav-45bbe41c576c9088d06dc283a8e4a09f.sample"
 
 [deps]
 
-source_file="res://Demo/Audio/bubbles/bubbles_02.wav"
-dest_files=["res://.godot/imported/bubbles_02.wav-80926049df08bdf6ffacedfbaaf140a2.sample"]
+source_file="res://Demo/Audio/SFX/bubbles/bubbles_02.wav"
+dest_files=["res://.godot/imported/bubbles_02.wav-45bbe41c576c9088d06dc283a8e4a09f.sample"]
 
 [params]
 
