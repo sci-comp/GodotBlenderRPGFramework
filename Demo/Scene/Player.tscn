@@ -239,5 +239,5 @@ offset_right = 640.0
 offset_bottom = 507.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
-transform = Transform3D(0.248288, 0, 0, 0, 0.0248288, 0, 0, 0, 0.347603, 0, 1.66485, -0.114659)
+transform = Transform3D(0.248288, 0, 0, 0, 0.0248288, 0, 0, 0, 0.347603, 0, 1.66485, 0.154044)
 mesh = SubResource("BoxMesh_fx7e7")

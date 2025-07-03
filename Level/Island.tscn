@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://y0wbbfugjd8s"]
+[gd_scene load_steps=72 format=3 uid="uid://y0wbbfugjd8s"]
 
 [ext_resource type="Script" uid="uid://boeifmaeewqud" path="res://addons/StandardAssets/Script/Level/LevelPortal.cs" id="2_ebj85"]
 [ext_resource type="PackedScene" uid="uid://587xvnrod6f6" path="res://Demo/Scene/Actor/Arissa.tscn" id="2_jg6fm"]
@@ -35,6 +35,9 @@
 [ext_resource type="Texture2D" uid="uid://blyrvtbf0wu7h" path="res://Demo/Texture/rock023_alb_ht.png" id="29_jg6fm"]
 [ext_resource type="PackedScene" uid="uid://8tl1ghmq6i1w" path="res://addons/StandardAssets/Scene/Ocean.tscn" id="30_vl0vs"]
 [ext_resource type="Texture2D" uid="uid://cy7w0oprhhtr5" path="res://icon.png" id="31_s8ppf"]
+[ext_resource type="PackedScene" uid="uid://d2xvgskmhvdgo" path="res://Demo/Scene/New/PF_Crate_01-convcol.glb" id="36_p4gos"]
+[ext_resource type="PackedScene" uid="uid://yid2wppkpd6s" path="res://Demo/Scene/New/PF_Barrel_01-convcol.glb" id="37_k6sm7"]
+[ext_resource type="PackedScene" uid="uid://caia3dbcq3ysw" path="res://Demo/Scene/New/PF_Health_Kit_01-convcol.glb" id="38_il25k"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mbon0"]
 size = Vector3(400, 40, 400)
@@ -162,7 +165,7 @@ _shader_parameters = {
 &"depth_blur": 0.0,
 &"enable_macro_variation": true,
 &"enable_projection": true,
-&"height_blending": true,
+&"flat_terrain_normals": false,
 &"macro_variation1": Color(1, 1, 1, 1),
 &"macro_variation2": Color(1, 1, 1, 1),
 &"macro_variation_slope": 0.333,
@@ -171,11 +174,8 @@ _shader_parameters = {
 &"noise1_offset": Vector2(0.5, 0.5),
 &"noise1_scale": 0.04,
 &"noise2_scale": 0.076,
-&"noise3_scale": 0.225,
 &"noise_texture": SubResource("NoiseTexture2D_k6sm7"),
-&"projection_angular_division": 2.0,
-&"projection_threshold": 0.8,
-&"world_space_normal_blend": true
+&"projection_threshold": 0.8
 }
 world_background = 0
 auto_shader = true
@@ -214,7 +214,6 @@ mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_hdsht")])
 texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_yi83g"), SubResource("Terrain3DTextureAsset_ltrur")])
 
 [sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_hdsht"]
-section_length = 0.1
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_tfabf"]
 radius = 2.0
@@ -366,7 +365,7 @@ RestDuration = 4.0
 remote_path = NodePath("../../../Platform_ThereAndBack")
 
 [node name="Platform_ThereAndBack" type="AnimatableBody3D" parent="Interactable/LeverHub_On_Stone_Arch"]
-transform = Transform3D(-0.262135, -0.087173, -0.961085, 3.72519e-09, 0.995875, -0.0903356, 0.965001, -0.0236798, -0.261071, 126.046, 25.7758, 26.9547)
+transform = Transform3D(-0.262134, -0.087173, -0.961085, 3.72519e-09, 0.995875, -0.0903356, 0.965001, -0.0236798, -0.261071, 126.046, 25.7758, 26.9547)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Interactable/LeverHub_On_Stone_Arch/Platform_ThereAndBack"]
 transform = Transform3D(2, 0, 0, 0, 0.5, 0, 0, 0, 3, 0, 0, 0)
@@ -474,17 +473,18 @@ moveDistance = Vector3(5, 1, 0)
 
 [node name="Setup" type="Node" parent="."]
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Setup"]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Setup"]
 environment = SubResource("Environment_4l1pe")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Setup"]
-transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
-shadow_enabled = true
 
 [node name="Terrain3D" type="Terrain3D" parent="Setup"]
 data_directory = "res://Data/Terrain"
 material = SubResource("Terrain3DMaterial_il25k")
 assets = SubResource("Terrain3DAssets_0g2yn")
+collision_mode = 4
 free_editor_textures = false
 top_level = true
 metadata/_edit_lock_ = true
@@ -654,3 +654,26 @@ emitting = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Trigger/Goalpost_On_Tall_Henge/vfx"]
 shape = SubResource("SphereShape3D_tfabf")
+
+[node name="Prop" type="Node" parent="."]
+
+[node name="PF_Crate_01-n1" parent="Prop" instance=ExtResource("36_p4gos")]
+transform = Transform3D(0.985656, 0, -0.168765, 0, 1, 0, 0.168765, 0, 0.985656, 5.19437, 11.3842, -4.64014)
+
+[node name="PF_Crate_01-n2" parent="Prop" instance=ExtResource("36_p4gos")]
+transform = Transform3D(0.985656, 0, -0.168765, 0, 1, 0, 0.168765, 0, 0.985656, 6.55387, 11.2289, -5.04796)
+
+[node name="PF_Crate_01-n3" parent="Prop" instance=ExtResource("36_p4gos")]
+transform = Transform3D(0.985656, 0, -0.168765, 0, 1, 0, 0.168765, 0, 0.985656, 4.71758, 11.1822, -2.27223)
+
+[node name="PF_Crate_01-n4" parent="Prop" instance=ExtResource("36_p4gos")]
+transform = Transform3D(0.985656, 0, -0.168765, 0, 1, 0, 0.168765, 0, 0.985656, 3.07805, 11.5445, -3.65168)
+
+[node name="PF_Barrel_01-n1" parent="Prop" instance=ExtResource("37_k6sm7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.06317, 11.2003, -3.15096)
+
+[node name="PF_Health_Kit_01-n1" parent="Prop" instance=ExtResource("38_il25k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.68477, 12.1821, -5.27762)
+
+[node name="PF_Health_Kit_01-n2" parent="Prop" instance=ExtResource("38_il25k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.63504, 12.1434, -2.13051)

@@ -6,4 +6,3 @@
 render_priority = 0
 shader = ExtResource("1_nnjnh")
 shader_parameter/wind_direction = Vector2(1, 1)
-shader_parameter/base_color = Color(0.678431, 0.698039, 0.388235, 1)

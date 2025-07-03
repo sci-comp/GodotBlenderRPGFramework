@@ -1,11 +1,13 @@
-~ start
+~ club
 
 do NPC.Camera("Rupert", "Closeup")
 Rupert: Hello there, how can I be of help this evening? [ID:HELLO_THERE_HOW_CAN_I_BE_OF_HE_AF7437]
 
 do PC.Camera("Closeup")
 - Nothing thanks, just passing through. [ID:NOTHING_THANKS_JUST_PASSING_T_25FFAC]
+	Player: Nothing thanks, just passing through. [ID:NOTHING_THANKS_JUST_PASSING_T_25FFAC]
 - I'd like to have a few more hours in the day, please? [ID:I_D_LIKE_TO_HAVE_A_FEW_MORE_H_E2394A]
+	Player: I'd like to have a few more hours in the day, please? [ID:I_D_LIKE_TO_HAVE_A_FEW_MORE_H_E2394A]
 	do NPC.Camera("Rupert", "Closeup")
 	Rupert: Ah.. I don't think I can help with that one. [ID:AH_I_DON_T_THINK_I_CAN_HELP_WI_A0D664]
 

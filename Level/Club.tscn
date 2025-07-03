@@ -115,6 +115,7 @@ script = ExtResource("5_optbx")
 _Title = "Rupert"
 _Details = "Manager"
 ActorID = "Rupert"
+StartTitle = "club"
 DialogueResource = ExtResource("5_7ro6o")
 
 [node name="CameraAngles" parent="Actor/Manager" instance=ExtResource("4_ddhng")]
